@@ -69,14 +69,14 @@ git push origin <span style="color: lime;">branchtype</span>/<span style="color:
 - Go to Pull Requests
 - Click on "New Pull Request"
 - Base: <span style="color: orange;">main</span>
-- Compare : <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname
+- Compare: <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname
 - Click on "Create Pull Request"
 - Click on “Squash and merge” or “Rebase and merge”
 
 **Delete the branch (local and remote)**
 <pre>git branch -d <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname</span></pre>
 
-### Additionnal
+### Additional
 
 **List branches**
 <pre>git branch -a</pre>

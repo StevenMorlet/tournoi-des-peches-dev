@@ -102,6 +102,7 @@ This project uses:
 - [TailwindCSS](https://tailwindcss.com) for styling
 - [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and
   load [Geist](https://vercel.com/font)
+- Phaser as the gameengine
 
 ## Documentation
 

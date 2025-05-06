@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 
 2. Copy the `.env.dist` file to a `.env` and edit as needed:
    ```bash
-   cp .env.dist .env
+   cp .env.local.dist .env.local
    ```
 
 3. Generate Prisma client:
@@ -28,7 +28,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000)

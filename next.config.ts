@@ -20,9 +20,7 @@
  * - Redirects and rewrites
  */
 
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+const nextConfig = {
    // React strict mode
    reactStrictMode: true,
 
@@ -36,7 +34,8 @@ const nextConfig: NextConfig = {
    images: {
       formats: [
          // https://nextjs.org/docs/app/api-reference/components/image#formats
-         'image/avif', 'image/webp',
+         'image/avif',
+         'image/webp',
       ],
       remotePatterns: [
          //TODO: Add remote patterns for external images
@@ -68,33 +67,33 @@ const nextConfig: NextConfig = {
                },
                {
                   key: 'Content-Security-Policy',
-                  value: process.env.NODE_ENV === 'development'
-                     ? [
-                        'default-src \'self\'',
-                        'script-src \'self\' \'unsafe-eval\' \'unsafe-inline\' \'wasm-unsafe-eval\'',
-                        'img-src \'self\' https: data: blob:',
-                        'connect-src \'self\' ws: wss:',
-                        'media-src \'self\' blob:',
-                        'frame-ancestors \'none\'',
-                        'base-uri \'self\'',
-                        'form-action \'self\'',
-                        'style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com',
-                        'font-src \'self\' https://fonts.gstatic.com',
-                     ].join('; ')
-                     : [
-                        'default-src \'self\'',
-                        'script-src \'self\' \'unsafe-eval\' \'unsafe-inline\'',
-                        'img-src \'self\' https: data: blob:',
-                        'connect-src \'self\' ws: wss:',
-                        'media-src \'self\' blob:',
-                        'frame-ancestors \'none\'',
-                        'base-uri \'self\'',
-                        'form-action \'self\'',
-                        'require-trusted-types-for \'script\'',
-                        'style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com',
-                        'font-src \'self\' https://fonts.gstatic.com',
-                     ].join('; '),
-
+                  value:
+                     process.env.NODE_ENV === 'development'
+                        ? [
+                             "default-src 'self'",
+                             "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'",
+                             "img-src 'self' https: data: blob:",
+                             "connect-src 'self' ws: wss:",
+                             "media-src 'self' blob:",
+                             "frame-ancestors 'none'",
+                             "base-uri 'self'",
+                             "form-action 'self'",
+                             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+                             "font-src 'self' https://fonts.gstatic.com",
+                          ].join('; ')
+                        : [
+                             "default-src 'self'",
+                             "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+                             "img-src 'self' https: data: blob:",
+                             "connect-src 'self' ws: wss:",
+                             "media-src 'self' blob:",
+                             "frame-ancestors 'none'",
+                             "base-uri 'self'",
+                             "form-action 'self'",
+                             "require-trusted-types-for 'script'",
+                             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+                             "font-src 'self' https://fonts.gstatic.com",
+                          ].join('; '),
                },
                {
                   key: 'Strict-Transport-Security',
@@ -106,7 +105,7 @@ const nextConfig: NextConfig = {
                },
             ],
          },
-      ];
+      ]
    },
 
    // Configure compiler options
@@ -154,6 +153,6 @@ const nextConfig: NextConfig = {
    //     });
    //     return config;
    //   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

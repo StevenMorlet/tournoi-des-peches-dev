@@ -4,16 +4,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [
 ## Setup
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
 
 2. Copy the `.env.dist` file to a `.env` and edit as needed:
+
    ```bash
    cp .env.local.dist .env.local
    ```
 
 3. Generate Prisma client:
+
    ```bash
    npx prisma generate
    ```
@@ -56,13 +59,13 @@ git checkout -b <span style="color: lime;">branchtype</span>/<span style="color:
 <pre>
 git add .
 git commit -m "<span style="color: lime;">type</span>: <span style="color: cyan;">message</span>"
-</pre>      
+</pre>
 
 ### Pushing
 
 <pre>
 git push origin <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname</span>
-</pre>  
+</pre>
 
 ### Merge Request
 
@@ -74,14 +77,17 @@ git push origin <span style="color: lime;">branchtype</span>/<span style="color:
 - Click on “Squash and merge” or “Rebase and merge”
 
 **Delete the branch (local and remote)**
+
 <pre>git branch -d <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname</span></pre>
 
 ### Additional
 
 **List branches**
+
 <pre>git branch -a</pre>
 
 **Update local branch**
+
 <pre>
 git checkout <span style="color: orange;">main</span>
 git pull origin <span style="color: orange;">main</span>

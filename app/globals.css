@@ -3,16 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-geist-mono: 'Geist Mono', monospace;
-  --font-geist-sans: 'Geist Sans', sans-serif;
 }
 
 @layer base {
   :root {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
   }
 }
 
@@ -26,5 +22,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-mono), serif;
 }

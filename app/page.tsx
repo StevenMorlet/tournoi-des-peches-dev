@@ -3,7 +3,7 @@ import background from '@/app/assets/background.png';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen grid grid-rows-[20px_1fr_20px] justify-items-center items-center gap-16 px-8 pb-20 sm:px-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="relative min-h-screen grid grid-rows-[20px_1fr_20px] justify-items-center items-center gap-16 px-8 pb-20 sm:px-20">
       <Image
         src={background}
         alt="Background"
@@ -16,9 +16,15 @@ export default function Home() {
       <div className="absolute inset-0 bg-black/15 z-10" />
 
       <main className="relative z-20 row-start-2 flex flex-col gap-8 items-center sm:items-start text-white text-center sm:text-left">
-        <h1 className="text-4xl sm:text-6xl font-[family-name:var(--font-geist-mono)] drop-shadow-xl">
-          Le Tournoi des Péchés
-        </h1>
+        <h1 className="text-4xl sm:text-6xl drop-shadow-xl">Le Tournoi des Péchés</h1>
+        <p className="text-4xl font-arcade">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </p>
       </main>
 
       <footer className="relative z-20 row-start-3 flex flex-wrap gap-6 items-center justify-center text-white text-sm">

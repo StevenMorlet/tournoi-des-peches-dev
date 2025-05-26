@@ -1,42 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [
-`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Setup
 
-1. Install dependencies:
+1. Install dependencies:  
+   `pnpm install`
 
-   ```bash
-   npm install
-   ```
+2. Copy the <ins>.env.dist</ins> file to a <ins>.env</ins> and edit as needed:  
+   `cp .env.local.dist .env`  
 
-2. Copy the `.env.dist` file to a `.env` and edit as needed:
+3. Generate Prisma client:  
+   `npx prisma generate` or `pnpm generate`  
 
-   ```bash
-   cp .env.local.dist .env.local
-   ```
+4. Create and apply database migrations:  
+    `npx prisma migrate dev` or `pnpm migrate`  
 
-3. Generate Prisma client:
-
-   ```bash
-   npx prisma generate
-   ```
-
-4. Create and apply database migrations:
-   ```bash
-   npx prisma migrate dev
-   ```
 
 ## Running
 
-Run the development server:
+Start docker container and dev server:
 
-```bash
-pnpm dev
-```
+`pnpm dev:full`
 
-Open [http://localhost:3000](http://localhost:3000)
+## Stopping
 
-## Contributing
+Stop dev server using `CTRL+C` then docker container with:
+
+`pnpm docker:down`
+
+> Open [http://localhost:3000](http://localhost:3000)
+
+## Versioning
 
 **Branch & Commit types :**
 
@@ -70,11 +61,11 @@ git push origin <span style="color: lime;">branchtype</span>/<span style="color:
 ### Merge Request
 
 - Go to Pull Requests
-- Click on "New Pull Request"
+- Click "New Pull Request”
 - Base: <span style="color: orange;">main</span>
 - Compare: <span style="color: lime;">branchtype</span>/<span style="color: cyan;">branchname
-- Click on "Create Pull Request"
-- Click on “Squash and merge” or “Rebase and merge”
+- Click “Create Pull Request”
+- Click “Squash and merge” or “Rebase and merge”
 
 **Delete the branch (local and remote)**
 
@@ -106,9 +97,8 @@ This project uses:
 - [Next.js](https://nextjs.org) as the React framework
 - [Prisma](https://prisma.io) as the ORM for database access
 - [TailwindCSS](https://tailwindcss.com) for styling
-- [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and
-  load [Geist](https://vercel.com/font)
-- Phaser as the gameengine
+- [Phaser](https://phaser.io/) as the game engine
+- [Docker](https://www.docker.com/) to run the app
 
 ## Documentation
 

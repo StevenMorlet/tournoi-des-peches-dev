@@ -19,7 +19,7 @@ import {
   fontGameOutlined,
 } from '../fonts';
 
-export default function Home() {
+export default function Page() {
   return (
     <div className="relative min-h-screen grid grid-rows-[20px_1fr_20px] justify-items-center items-center gap-16 px-8 pb-20 sm:px-20">
       <Image

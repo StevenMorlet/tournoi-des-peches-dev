@@ -23,9 +23,6 @@ importers:
       pnpm:
         specifier: ^10.10.0
         version: 10.11.0
-      postcss:
-        specifier: ^8.5.3
-        version: 8.5.3
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -69,6 +66,9 @@ importers:
       eslint-plugin-react-hooks:
         specifier: ^5.2.0
         version: 5.2.0(eslint@8.57.1)
+      postcss:
+        specifier: 8.5.3
+        version: 8.5.3
       prettier:
         specifier: ^3.5.3
         version: 3.5.3

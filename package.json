@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "next start",
+    "build": "next build",
+
     "dev": "next dev --turbopack",
-    "lint": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write .",
+    "dev:full": "pnpm docker:up && pnpm dev",
+
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev",
+
+    "docker:build": "docker compose up --build",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
-    "dev:full": "pnpm docker:up && pnpm dev",
-    "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate dev"
+
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
@@ -19,7 +26,6 @@
     "next": "^15.3.1",
     "phaser": "^3.88.2",
     "pnpm": "^10.10.0",
-    "postcss": "^8.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

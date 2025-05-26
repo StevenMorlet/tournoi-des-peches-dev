@@ -11,6 +11,14 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - data:/var/lib/postgresql/data
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/tournoi
 
 volumes:
   data:

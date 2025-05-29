@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { fontDisplay } from '@/app/fonts';
 
 export const metadata: Metadata = {
   title: 'Le Tournoi des Péchés',
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased ${fontDisplay.className}`}>{children}</body>
     </html>
   );
 }

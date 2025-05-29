@@ -19,6 +19,12 @@
   }
 }
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #000000FF inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

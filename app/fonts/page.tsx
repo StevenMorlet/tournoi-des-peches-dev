@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import background from '@/app/assets/background.png';
+import background from '@/app/assets/backgrounds/background.png';
 import {
   fontArcadeOutlined,
   fontArcadeBlock,

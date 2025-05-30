@@ -29,7 +29,7 @@ export default function RootLayout({
         <div className="absolute inset-0 bg-black/15 z-10" />
 
         <AppProviders>
-          <div>{children}</div>
+          <div className={`relative z-20`}>{children}</div>
         </AppProviders>
       </body>
     </html>

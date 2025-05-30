@@ -21,7 +21,7 @@ import {
   fontGame,
   fontGameFilledOutline,
   fontGameOutlined,
-} from '../fonts';
+} from '../lib/fonts';
 
 export default function Page() {
   return (

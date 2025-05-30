@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { fontDisplayOutlined } from './fonts';
+import { fontDisplayOutlined } from './lib/fonts';
 import Link from 'next/link';
 
 export default async function Home() {

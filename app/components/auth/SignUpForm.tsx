@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { fontDisplay, fontGameCompact } from '@/app/fonts';
+import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
 import { useDebouncedValue } from '@/app/hooks/useDebouncedValue';
 
 export default function SignUpForm() {

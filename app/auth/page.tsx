@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import tournoilogo from '@/app/assets/logos/VNoirCBlanc.png';
-import { fontDisplayOutlined } from '../fonts';
+import { fontDisplayOutlined } from '../lib/fonts';
 import AuthForms from '@/app/components/auth/AuthForms';
 
 export default function AuthPage() {

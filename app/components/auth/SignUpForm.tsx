@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { fontDisplay, fontGameCompact } from '@/app/fonts';
-import { useDebouncedValue } from '@/app/lib/hooks/useDebouncedValue';
+import { useDebouncedValue } from '@/app/hooks/useDebouncedValue';
 
 export default function SignUpForm() {
   const [rawFields, setRawFields] = useState({

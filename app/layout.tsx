@@ -3,8 +3,7 @@ import './globals.css';
 import { fontDisplay } from '@/app/fonts';
 import Image from 'next/image';
 import background from '@/app/assets/backgrounds/background.png';
-import SessionDebug from '@/app/components/debug/SessionDebug';
-import { NotificationProvider } from '@/app/components/notifications/NotificationContext';
+import AppProviders from '@/app/contexts/AppProviders';
 
 export const metadata: Metadata = {
   title: 'Le Tournoi des Péchés',
@@ -30,10 +29,9 @@ export default function RootLayout({
 
         <div className="absolute inset-0 bg-black/15 z-10" />
 
-        <NotificationProvider>
-          <SessionDebug />
+        <AppProviders>
           <div className={`${fontDisplay.className}`}>{children}</div>
-        </NotificationProvider>
+        </AppProviders>
       </body>
     </html>
   );

@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useNotify } from '@/app/components/notifications/NotificationContext';
+import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay } from '@/app/fonts';
-import { useAuthForm } from './AuthFormsContext';
+import { useAuthForm } from '../../contexts/AuthFormsContext';
 import SignupForm from '@/app/components/auth/SignUpForm';
 import LoginForm from '@/app/components/auth/LogInForm';
 

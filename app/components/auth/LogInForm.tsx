@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useNotify } from '@/app/components/notifications/NotificationContext';
+import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontGameCompact, fontDisplay } from '@/app/fonts';
 
 export default function LoginForm() {

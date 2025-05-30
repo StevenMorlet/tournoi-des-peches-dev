@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontGameCompact, fontDisplay } from '@/app/fonts';
+import { useSession } from '@/app/contexts/SessionContext';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function LoginForm() {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const notify = useNotify();
   const router = useRouter();
+  const { refresh } = useSession();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ export default function LoginForm() {
       notify('Connexion réussie !', 'success');
       router.push('/');
     }
+
+    void refresh();
   };
 
   return (

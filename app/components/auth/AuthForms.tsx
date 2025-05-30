@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay } from '@/app/lib/fonts';
-import { useAuthForm } from '../../contexts/AuthFormsContext';
+import { useAuthForm } from '../../contexts/AuthFormContext';
 import SignupForm from '@/app/components/auth/SignUpForm';
 import LoginForm from '@/app/components/auth/LogInForm';
 

@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { NotificationProvider } from './NotificationContext';
-import { AuthFormProvider } from './AuthFormsContext';
+import { AuthFormProvider } from './AuthFormContext';
 import SessionDebug from '@/app/components/debug/SessionDebug';
 import { SessionProvider } from '@/app/contexts/SessionContext';
 

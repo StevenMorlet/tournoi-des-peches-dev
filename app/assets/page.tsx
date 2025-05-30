@@ -1,5 +1,9 @@
 import Image from 'next/image';
 import background from '@/app/assets/backgrounds/background.png';
+import VBlancCBlanc from '@/app/assets/logos/VBlancCBlanc.png';
+import VBlancCNoir from '@/app/assets/logos/VBlancCNoir.png';
+import VNoirCBlanc from '@/app/assets/logos/VNoirCBlanc.png';
+import VNoirCNoir from '@/app/assets/logos/VNoirCNoir.png';
 import {
   fontArcadeOutlined,
   fontArcadeBlock,
@@ -17,7 +21,7 @@ import {
   fontGame,
   fontGameFilledOutline,
   fontGameOutlined,
-} from '../../fonts';
+} from '../fonts';
 
 export default function Page() {
   return (
@@ -34,6 +38,12 @@ export default function Page() {
       <div className="absolute inset-0 bg-black/15 z-10" />
 
       <main className="relative z-20 row-start-2 flex flex-col gap-8 items-center sm:items-start text-white text-center sm:text-left">
+        <div className="flex flex-row justify-center gap-20 p-20">
+          <Image src={VBlancCBlanc} alt="VBCB" quality={100} style={{ width: '15%' }} />
+          <Image src={VBlancCNoir} alt="VBCN" quality={100} style={{ width: '15%' }} />
+          <Image src={VNoirCBlanc} alt="VNCB" quality={100} style={{ width: '15%' }} />
+          <Image src={VNoirCNoir} alt="VNCN" quality={100} style={{ width: '15%' }} />
+        </div>
         <div className="grid grid-cols-2 gap-20 gap-y-25">
           <div className="grid gap-2">
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit box-shadow-md">

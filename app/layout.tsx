@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { fontDisplay } from '@/app/fonts';
 import Image from 'next/image';
 import background from '@/app/assets/backgrounds/background.png';
 import AppProviders from '@/app/contexts/AppProviders';
@@ -30,7 +29,7 @@ export default function RootLayout({
         <div className="absolute inset-0 bg-black/15 z-10" />
 
         <AppProviders>
-          <div className={`${fontDisplay.className}`}>{children}</div>
+          <div>{children}</div>
         </AppProviders>
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import tournoilogo from '@/app/assets/logos/VNoir-CBlanc.png';
+import tournoilogo from '@/app/assets/logos/VNoirCBlanc.png';
 import { fontDisplayOutlined } from '../fonts';
 import AuthForms from '@/app/components/auth/AuthForms';
 

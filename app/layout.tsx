@@ -17,16 +17,18 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`antialiased`}>
-        <Image
-          src={background}
-          alt="Background"
-          fill
-          quality={100}
-          className="object-cover z-0"
-          priority
-        />
+        <div className="fixed inset-0 -z-10">
+          <Image
+            src={background}
+            alt="Background"
+            fill
+            quality={100}
+            className="object-cover"
+            priority
+          />
+        </div>
 
-        <div className="absolute inset-0 bg-black/15 z-10" />
+        <div className="fixed inset-0 bg-black/15 -z-10" />
 
         <AppProviders>
           <div className={`relative z-20`}>{children}</div>

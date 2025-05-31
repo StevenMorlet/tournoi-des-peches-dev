@@ -14,7 +14,7 @@ export function generateEmailHTML({
   return `
   <div style="background:#111111;color:#f8f8f8;padding:40px;font-family:'Segoe UI',sans-serif;max-width:600px;margin:auto;border-radius:12px;">
     <div style="text-align:center;margin-bottom:30px;">
-      <img src="http://localhost:3000/assets/logos/VBlancCBlanc.png" alt="Logo du tournoi" style="width:80px;height:auto;" />
+      <img src=${logoURL} alt="Logo du tournoi" style="width:80px;height:auto;" />
     </div>
 
     <h1 style="font-size:22px;margin-bottom:20px;text-align:center;">${title}</h1>

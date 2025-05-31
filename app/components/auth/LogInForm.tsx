@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNotify } from '@/app/contexts/NotificationContext';
-import { fontGameCompact, fontDisplay } from '@/app/lib/fonts';
+import { fontDisplay } from '@/app/lib/fonts';
 import { useSession } from '@/app/contexts/SessionContext';
 import Link from 'next/link';
+import Input from '@/app/components/form/input/input';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -41,25 +42,25 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
       <div>
-        <input
+        <Input
           type="email"
           name="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={`p-2 border-4 rounded-md w-full ${errors.email ? 'border-red-500' : 'border-gray-300'} ${fontGameCompact.className}`}
+          className={errors.email && 'border-red-500'}
         />
         {errors.email && <p className="text-sm text-red-400 mt-1">{errors.email}</p>}
       </div>
 
       <div>
-        <input
+        <Input
           type="password"
           name="password"
           placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={`p-2 border-4 rounded-md w-full ${errors.password ? 'border-red-500' : 'border-gray-300'} ${fontGameCompact.className}`}
+          className={errors.password && 'border-red-500'}
         />
         {errors.password && <p className="text-sm text-red-400 mt-1">{errors.password}</p>}
       </div>

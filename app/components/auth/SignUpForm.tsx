@@ -5,6 +5,7 @@ import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
 import { useDebouncedValue } from '@/app/lib/hooks/useDebouncedValue';
 import ResendConfirmationButton from '@/app/components/auth/ResendConfirmationEmailButton';
 import Link from 'next/link';
+import Input from '@/app/components/form/input/input';
 
 export default function SignUpForm() {
   const [rawFields, setRawFields] = useState({
@@ -67,7 +68,7 @@ export default function SignUpForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
       <div>
-        <input
+        <Input
           type="email"
           name="email"
           placeholder="Email"
@@ -75,11 +76,8 @@ export default function SignUpForm() {
           onChange={handleChange}
           disabled={confirmationSent}
           className={
-            (confirmationSent &&
-              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
-            `p-2 border-4 rounded-md w-full ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            } ${fontGameCompact.className}`
+            (confirmationSent && `opacity-50 cursor-not-allowed`) ||
+            (errors.email && `border-red-500`)
           }
         />
         {errors.email && (
@@ -88,7 +86,7 @@ export default function SignUpForm() {
       </div>
 
       <div>
-        <input
+        <Input
           type="text"
           name="username"
           placeholder="Nom d’utilisateur"
@@ -96,11 +94,8 @@ export default function SignUpForm() {
           onChange={handleChange}
           disabled={confirmationSent}
           className={
-            (confirmationSent &&
-              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
-            `p-2 border-4 rounded-md w-full ${
-              errors.username ? 'border-red-500' : 'border-gray-300'
-            } ${fontGameCompact.className}`
+            (confirmationSent && `opacity-50 cursor-not-allowed`) ||
+            (errors.username && `border-red-500`)
           }
         />
         {errors.username && (
@@ -111,7 +106,7 @@ export default function SignUpForm() {
       </div>
 
       <div>
-        <input
+        <Input
           type="password"
           name="password"
           placeholder="Mot de passe"
@@ -119,11 +114,8 @@ export default function SignUpForm() {
           onChange={handleChange}
           disabled={confirmationSent}
           className={
-            (confirmationSent &&
-              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
-            `p-2 border-4 rounded-md w-full ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            } ${fontGameCompact.className}`
+            (confirmationSent && `opacity-50 cursor-not-allowed`) ||
+            (errors.password && `border-red-500`)
           }
         />
         {errors.password && (

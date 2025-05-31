@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import background from '@/app/assets/backgrounds/background.png';
 import VBlancCBlanc from '@/app/assets/logos/VBlancCBlanc.png';
 import VBlancCNoir from '@/app/assets/logos/VBlancCNoir.png';
 import VNoirCBlanc from '@/app/assets/logos/VNoirCBlanc.png';

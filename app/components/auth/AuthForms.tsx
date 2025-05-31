@@ -1,27 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay } from '@/app/lib/fonts';
 import { useAuthForm } from '@/app/contexts/AuthFormContext';
 import SignupForm from '@/app/components/auth/SignUpForm';
 import LoginForm from '@/app/components/auth/LogInForm';
 import ForgotPasswordForm from '@/app/components/auth/ForgotPasswordForm';
-import { useSearchParams } from 'next/navigation';
 
 export default function AuthForms() {
   const { form, setForm } = useAuthForm();
-  const notify = useNotify();
-  const hasHandled = useRef(false);
-  const params = useSearchParams();
-  const verified = params.get('verified');
-
-  useEffect(() => {
-    setForm('login');
-    if (hasHandled.current || verified !== '1') return;
-    hasHandled.current = true;
-    notify('Adresse email confirmée, vous pouvez vous connecter.', 'success');
-  }, [notify, setForm, verified]);
 
   return (
     <div className="w-full p-6 shadow-lg flex flex-col gap-6">

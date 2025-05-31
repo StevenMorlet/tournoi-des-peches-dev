@@ -72,7 +72,7 @@ const nextConfig = {
                 ? [
                     "default-src 'self'",
                     "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'",
-                    "img-src 'self' https: data: blob:",
+                    "img-src 'self' https: data: blob: http://localhost:3000",
                     "connect-src 'self' ws: wss:",
                     "media-src 'self' blob:",
                     "frame-ancestors 'none'",
@@ -108,11 +108,8 @@ const nextConfig = {
     ];
   },
 
-  // Configure compiler options
   compiler: {
-    // Remove console logs and warns in production
     removeConsole: process.env.NODE_ENV === 'production',
-    // Support styled components
     styledComponents: true,
   },
 

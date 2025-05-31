@@ -26,17 +26,6 @@ import {
 export default function Page() {
   return (
     <div className="relative min-h-screen grid grid-rows-[20px_1fr_20px] justify-items-center items-center gap-16 px-8 pb-20 sm:px-20">
-      <Image
-        src={background}
-        alt="Background"
-        fill
-        quality={100}
-        className="object-cover z-0"
-        priority
-      />
-
-      <div className="absolute inset-0 bg-black/15 z-10" />
-
       <main className="relative z-20 row-start-2 flex flex-col gap-8 items-center sm:items-start text-white text-center sm:text-left">
         <div className="flex flex-row justify-center gap-20 p-20">
           <Image src={VBlancCBlanc} alt="VBCB" quality={100} style={{ width: '15%' }} />

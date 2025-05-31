@@ -58,7 +58,7 @@ export default function SessionDebug() {
         {isLoggedIn && (
           <button
             onClick={logout}
-            className="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition cursor-pointer"
+            className="bg-primary px-3 py-1 rounded hover:bg-secondary transition cursor-pointer"
           >
             Logout
           </button>

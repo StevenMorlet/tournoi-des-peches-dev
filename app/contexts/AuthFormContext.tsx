@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-export type AuthFormType = 'login' | 'signup';
+export type AuthFormType = 'login' | 'signup' | 'forgot';
 
 interface AuthFormContextType {
   form: AuthFormType;

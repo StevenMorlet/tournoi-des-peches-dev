@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-  id                          String    @id @default(cuid())
-  email                       String    @unique
-  username                    String?   @unique
+  id                          String               @id @default(cuid())
+  email                       String               @unique
+  username                    String?              @unique
   password                    String?
-  admin                       Boolean   @default(false)
-  createDate                  DateTime  @default(now())
-  updatedAt                   DateTime  @updatedAt
+  admin                       Boolean              @default(false)
+  createDate                  DateTime             @default(now())
+  updatedAt                   DateTime             @updatedAt
   lastVerificationEmailSentAt DateTime?
+  PasswordResetToken          PasswordResetToken[]
 }
 
 model EmailVerificationToken {
@@ -26,4 +27,13 @@ model EmailVerificationToken {
   hashedPassword String
   createdAt      DateTime @default(now())
   expiresAt      DateTime
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
 }

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Compte non vérifié.', code: 'UNVERIFIED' }, { status: 403 });
   }
 
-  const passwordMatch = bcrypt.compare(password, user.password);
+  const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     return NextResponse.json({ error: 'Mot de passe incorrect.' }, { status: 401 });
   }

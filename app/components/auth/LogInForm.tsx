@@ -48,9 +48,9 @@ export default function LoginForm() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className={errors.email && 'border-red-500'}
+          className={errors.email && 'border-primary'}
         />
-        {errors.email && <p className="text-sm text-red-400 mt-1">{errors.email}</p>}
+        {errors.email && <p className="text-sm text-primary mt-1">{errors.email}</p>}
       </div>
 
       <div>
@@ -60,15 +60,15 @@ export default function LoginForm() {
           placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className={errors.password && 'border-red-500'}
+          className={errors.password && 'border-primary'}
         />
-        {errors.password && <p className="text-sm text-red-400 mt-1">{errors.password}</p>}
+        {errors.password && <p className="text-sm text-primary mt-1">{errors.password}</p>}
       </div>
 
       <div className={`flex flex-row justify-between`}>
         <button
           type="submit"
-          className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+          className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
         >
           Se connecter
         </button>
@@ -76,7 +76,7 @@ export default function LoginForm() {
         <Link
           href="/"
           passHref
-          className={`bg-black text-white px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+          className={`bg-black text-white px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
         >
           Annuler
         </Link>

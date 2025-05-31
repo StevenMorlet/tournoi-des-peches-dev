@@ -53,7 +53,7 @@ export async function sendMail(to: string, subject: string, html: string) {
 }
 
 export async function sendEmailVerification(email: string, token: string) {
-  const uRL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/verify?token=${token}`;
+  const uRL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup/verify?token=${token}`;
 
   await sendMail(
     email,
@@ -65,4 +65,15 @@ export async function sendEmailVerification(email: string, token: string) {
       buttonUrl: uRL,
     }),
   );
+}
+
+export async function sendPasswordResetEmail(email: string, link: string) {
+  const html = generateEmailHTML({
+    title: 'Réinitialisation du mot de passe',
+    text: 'Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe.',
+    buttonText: 'Réinitialiser mon mot de passe',
+    buttonUrl: link,
+  });
+
+  await sendMail(email, 'Réinitialisation de votre mot de passe', html);
 }

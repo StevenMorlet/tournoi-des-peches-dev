@@ -1,5 +1,39 @@
 import nodemailer from 'nodemailer';
 
+export function generateEmailHTML({
+  title,
+  text,
+  buttonText,
+  buttonUrl,
+}: {
+  title: string;
+  text: string;
+  buttonText: string;
+  buttonUrl: string;
+}) {
+  return `
+    <div style="background:#1a1a1a;color:#f0f0f0;padding:40px;font-family:sans-serif;max-width:600px;margin:auto;border-radius:12px;">
+      <div style="text-align:center;margin-bottom:30px;">
+        <img src="https://ton-domaine.com/logo.png" alt="Logo" style="width:80px;height:auto;" />
+      </div>
+
+      <h1 style="font-size:24px;margin-bottom:20px;text-align:center;">${title}</h1>
+
+      <p style="font-size:16px;margin-bottom:30px;text-align:center;">${text}</p>
+
+      <div style="text-align:center;">
+        <a href="${buttonUrl}" style="background:#e63946;color:white;padding:12px 24px;border-radius:6px;text-decoration:none;font-size:16px;">
+          ${buttonText}
+        </a>
+      </div>
+
+      <p style="font-size:12px;color:#888;margin-top:40px;text-align:center;">
+        Si vous n’avez pas fait cette demande, vous pouvez ignorer ce message.
+      </p>
+    </div>
+  `;
+}
+
 export async function sendMail(to: string, subject: string, html: string) {
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -24,6 +58,11 @@ export async function sendEmailVerification(email: string, token: string) {
   await sendMail(
     email,
     'Confirmez votre adresse email',
-    `<p>Cliquez ici pour valider votre adresse email : <a href="${uRL}">${uRL}</a></p>`,
+    generateEmailHTML({
+      title: 'Bienvenue au Tournoi !',
+      text: 'Pour valider votre adresse email, cliquez sur le bouton ci-dessous.',
+      buttonText: 'Confirmer mon email',
+      buttonUrl: uRL,
+    }),
   );
 }

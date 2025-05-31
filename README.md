@@ -4,16 +4,16 @@
    `pnpm install`
 
 2. Copy the <ins>.env.dist</ins> file to a <ins>.env</ins> and edit as needed:  
-   `cp .env.dist .env`  
+   `cp .env.dist .env`
 
 3. Generate Prisma client:  
-   `npx prisma generate` or `pnpm generate`  
+   `npx prisma generate` or `pnpm generate`
 
 4. Launch Docker container
    `pnpm docker:up`
 
 5. Create and apply database migrations:  
-    `npx prisma migrate dev` or `pnpm migrate`  
+   `npx prisma migrate dev` or `pnpm migrate`
 
 6. Stop Docker container
    `pnpm docker:down`

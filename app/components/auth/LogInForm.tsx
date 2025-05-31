@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontGameCompact, fontDisplay } from '@/app/lib/fonts';
 import { useSession } from '@/app/contexts/SessionContext';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -63,12 +64,22 @@ export default function LoginForm() {
         {errors.password && <p className="text-sm text-red-400 mt-1">{errors.password}</p>}
       </div>
 
-      <button
-        type="submit"
-        className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
-      >
-        Se connecter
-      </button>
+      <div className={`flex flex-row justify-between`}>
+        <button
+          type="submit"
+          className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+        >
+          Se connecter
+        </button>
+
+        <Link
+          href="/"
+          passHref
+          className={`bg-black text-white px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+        >
+          Annuler
+        </Link>
+      </div>
     </form>
   );
 }

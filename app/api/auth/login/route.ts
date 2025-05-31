@@ -18,15 +18,15 @@ export async function POST(req: Request) {
 
   const user = await prisma.user.findUnique({ where: { email } });
 
-  if (!user || !user.password) {
+  if (!user) {
     return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
   }
 
-  if (!user.emailVerified) {
-    return NextResponse.json({ error: 'Email non vérifié.' }, { status: 403 });
+  if (!user.username || !user.password) {
+    return NextResponse.json({ error: 'Compte non vérifié.', code: 'UNVERIFIED' }, { status: 403 });
   }
 
-  const passwordMatch = await bcrypt.compare(password, user.password);
+  const passwordMatch = bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     return NextResponse.json({ error: 'Mot de passe incorrect.' }, { status: 401 });
   }
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     httpOnly: true,
     secure: true,
     path: '/',
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 60 * 60 * 24,
   });
 
   return res;

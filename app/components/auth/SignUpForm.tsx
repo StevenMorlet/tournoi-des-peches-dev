@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
 import { useDebouncedValue } from '@/app/lib/hooks/useDebouncedValue';
+import ResendConfirmationButton from '@/app/components/auth/ResendConfirmationEmailButton';
+import Link from 'next/link';
 
 export default function SignUpForm() {
   const [rawFields, setRawFields] = useState({
@@ -15,6 +17,7 @@ export default function SignUpForm() {
   const [errors, setErrors] = useState<Partial<typeof rawFields>>({});
   const [msg, setMsg] = useState('');
   const [isError, setIsError] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,7 +60,7 @@ export default function SignUpForm() {
       setIsError(true);
     } else {
       setMsg(data.message);
-      setRawFields({ email: '', username: '', password: '' });
+      setConfirmationSent(true);
     }
   };
 
@@ -70,9 +73,14 @@ export default function SignUpForm() {
           placeholder="Email"
           value={rawFields.email}
           onChange={handleChange}
-          className={`p-2 border-4 rounded-md w-full ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
-          } ${fontGameCompact.className}`}
+          disabled={confirmationSent}
+          className={
+            (confirmationSent &&
+              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
+            `p-2 border-4 rounded-md w-full ${
+              errors.email ? 'border-red-500' : 'border-gray-300'
+            } ${fontGameCompact.className}`
+          }
         />
         {errors.email && (
           <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>{errors.email}</p>
@@ -86,9 +94,14 @@ export default function SignUpForm() {
           placeholder="Nom d’utilisateur"
           value={rawFields.username}
           onChange={handleChange}
-          className={`p-2 border-4 rounded-md w-full ${
-            errors.username ? 'border-red-500' : 'border-gray-300'
-          } ${fontGameCompact.className}`}
+          disabled={confirmationSent}
+          className={
+            (confirmationSent &&
+              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
+            `p-2 border-4 rounded-md w-full ${
+              errors.username ? 'border-red-500' : 'border-gray-300'
+            } ${fontGameCompact.className}`
+          }
         />
         {errors.username && (
           <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>
@@ -104,9 +117,14 @@ export default function SignUpForm() {
           placeholder="Mot de passe"
           value={rawFields.password}
           onChange={handleChange}
-          className={`p-2 border-4 rounded-md w-full ${
-            errors.password ? 'border-red-500' : 'border-gray-300'
-          } ${fontGameCompact.className}`}
+          disabled={confirmationSent}
+          className={
+            (confirmationSent &&
+              `p-2 border-4 rounded-md w-full border-gray-300 ${fontGameCompact.className} opacity-50 cursor-not-allowed`) ||
+            `p-2 border-4 rounded-md w-full ${
+              errors.password ? 'border-red-500' : 'border-gray-300'
+            } ${fontGameCompact.className}`
+          }
         />
         {errors.password && (
           <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>
@@ -115,19 +133,42 @@ export default function SignUpForm() {
         )}
       </div>
 
-      <button
-        type="submit"
-        className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
-      >
-        S’inscrire
-      </button>
+      <div className={`flex flex-row justify-between`}>
+        {(confirmationSent && (
+          <button
+            type="submit"
+            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 ${fontDisplay.className} opacity-50 cursor-not-allowed`}
+            disabled
+          >
+            S’inscrire
+          </button>
+        )) || (
+          <button
+            type="submit"
+            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+          >
+            S’inscrire
+          </button>
+        )}
+
+        <Link
+          href="/"
+          passHref
+          className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer w-fit`}
+        >
+          Annuler
+        </Link>
+      </div>
 
       {msg && (
-        <p
-          className={`text-sm mt-2 ${isError ? 'text-red-400' : 'text-green-400'} ${fontGameCompact.className}`}
-        >
-          {msg}
-        </p>
+        <div className={`flex flex-row gap-2 justify-between`}>
+          <p
+            className={`text-sm mt-2 ${isError ? 'text-red-400' : 'text-green-400'} ${fontGameCompact.className}`}
+          >
+            {msg}
+          </p>
+          {confirmationSent && <ResendConfirmationButton email={rawFields.email} />}
+        </div>
       )}
     </form>
   );

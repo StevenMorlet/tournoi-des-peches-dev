@@ -3,25 +3,22 @@
 import { useEffect, useRef } from 'react';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay } from '@/app/lib/fonts';
-import { useAuthForm } from '../../contexts/AuthFormContext';
+import { useAuthForm } from '@/app/contexts/AuthFormContext';
 import SignupForm from '@/app/components/auth/SignUpForm';
 import LoginForm from '@/app/components/auth/LogInForm';
+import { useSearchParams } from 'next/navigation';
 
 export default function AuthForms() {
   const { form, setForm } = useAuthForm();
   const notify = useNotify();
   const hasHandled = useRef(false);
+  const params = useSearchParams();
+  const verified = params.get('verified');
 
   useEffect(() => {
-    if (hasHandled.current) return;
-
-    const wasVerified = localStorage.getItem('emailVerified');
-    if (wasVerified === '1') {
-      notify('Email vérifié !', 'success');
-      setForm('login');
-      localStorage.removeItem('emailVerified');
-      hasHandled.current = true;
-    }
+    setForm('login');
+    if (hasHandled.current || verified !== '1') return;
+    hasHandled.current = true;
   }, [notify, setForm]);
 
   return (

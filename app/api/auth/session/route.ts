@@ -20,7 +20,6 @@ export async function GET() {
       id: true,
       username: true,
       email: true,
-      emailVerified: true,
       admin: true,
     },
   });

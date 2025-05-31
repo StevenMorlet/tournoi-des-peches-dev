@@ -77,11 +77,11 @@ export default function SignUpForm() {
           disabled={confirmationSent}
           className={
             (confirmationSent && `opacity-50 cursor-not-allowed`) ||
-            (errors.email && `border-red-500`)
+            (errors.email && `border-primary`)
           }
         />
         {errors.email && (
-          <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>{errors.email}</p>
+          <p className={`text-sm text-primary mt-1 ${fontGameCompact.className}`}>{errors.email}</p>
         )}
       </div>
 
@@ -95,11 +95,11 @@ export default function SignUpForm() {
           disabled={confirmationSent}
           className={
             (confirmationSent && `opacity-50 cursor-not-allowed`) ||
-            (errors.username && `border-red-500`)
+            (errors.username && `border-primary`)
           }
         />
         {errors.username && (
-          <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>
+          <p className={`text-sm text-primary mt-1 ${fontGameCompact.className}`}>
             {errors.username}
           </p>
         )}
@@ -115,11 +115,11 @@ export default function SignUpForm() {
           disabled={confirmationSent}
           className={
             (confirmationSent && `opacity-50 cursor-not-allowed`) ||
-            (errors.password && `border-red-500`)
+            (errors.password && `border-primary`)
           }
         />
         {errors.password && (
-          <p className={`text-sm text-red-400 mt-1 ${fontGameCompact.className}`}>
+          <p className={`text-sm text-primary mt-1 ${fontGameCompact.className}`}>
             {errors.password}
           </p>
         )}
@@ -137,7 +137,7 @@ export default function SignUpForm() {
         )) || (
           <button
             type="submit"
-            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer`}
+            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
           >
             S’inscrire
           </button>
@@ -146,7 +146,7 @@ export default function SignUpForm() {
         <Link
           href="/"
           passHref
-          className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-red-900 ${fontDisplay.className} cursor-pointer w-fit`}
+          className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer w-fit`}
         >
           Annuler
         </Link>
@@ -155,7 +155,7 @@ export default function SignUpForm() {
       {msg && (
         <div className={`flex flex-row gap-2 justify-between`}>
           <p
-            className={`text-sm mt-2 ${isError ? 'text-red-400' : 'text-green-400'} ${fontGameCompact.className}`}
+            className={`text-sm mt-2 ${isError ? 'text-primary' : 'text-green-400'} ${fontGameCompact.className}`}
           >
             {msg}
           </p>

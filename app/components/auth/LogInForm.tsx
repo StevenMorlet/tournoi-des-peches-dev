@@ -6,7 +6,7 @@ import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay } from '@/app/lib/fonts';
 import { useSession } from '@/app/contexts/SessionContext';
 import Link from 'next/link';
-import Input from '@/app/components/form/input/input';
+import Input from '@/app/components/form/input/Input';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');

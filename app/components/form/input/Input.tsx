@@ -1,13 +1,14 @@
 'use client';
 
-import React from 'react';
 import { fontGameCompact } from '@/app/lib/fonts';
+import React from 'react';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export default function Input({ className = '', ...props }: InputProps) {
+export default function Input({ className = '', autoComplete = 'off', ...props }: InputProps) {
   return (
     <input
+      autoComplete={autoComplete}
       {...props}
       className={`
         p-2 w-full 
@@ -20,7 +21,6 @@ export default function Input({ className = '', ...props }: InputProps) {
         placeholder-neutral-500
         focus:outline-none focus:ring-2 focus:ring-primary
         transition duration-200 ease-in-out
-        autofill:shadow-[inset_0_0_0px_1000px_black]
         ${className}
       `}
     />

@@ -5,7 +5,7 @@ import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
 import { useDebouncedValue } from '@/app/lib/hooks/useDebouncedValue';
 import ResendConfirmationButton from '@/app/components/auth/ResendConfirmationEmailButton';
 import Link from 'next/link';
-import Input from '@/app/components/form/input/input';
+import Input from '@/app/components/form/input/Input';
 
 export default function SignUpForm() {
   const [rawFields, setRawFields] = useState({

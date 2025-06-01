@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
-import Input from '@/app/components/form/input/input';
+import Input from '@/app/components/form/input/Input';
 
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState('');

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
-import Input from '@/app/components/form/input/input';
+import Input from '@/app/components/form/input/Input';
 import { useNotify } from '@/app/contexts/NotificationContext';
 
 export default function ResetPasswordForm({ token }: { token: string }) {

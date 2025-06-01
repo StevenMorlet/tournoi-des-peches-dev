@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 COPY public ./public
 COPY prisma ./prisma
-COPY tsconfig.json next.config.ts tailwind.config.js postcss.config.js ./
+COPY tsconfig.json next.config.ts tailwind.config.ts postcss.config.js ./
 COPY app ./app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate

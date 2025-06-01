@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useNotify } from '@/app/contexts/NotificationContext';
-import { fontDisplay } from '@/app/lib/fonts';
+import { fontDisplay, fontGameCompact } from '@/app/lib/fonts';
 import { useSession } from '@/app/contexts/SessionContext';
 import Link from 'next/link';
 import Input from '@/app/components/form/input/Input';
@@ -50,7 +50,9 @@ export default function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           className={errors.email && 'border-primary'}
         />
-        {errors.email && <p className="text-sm text-primary mt-1">{errors.email}</p>}
+        {errors.email && (
+          <p className={`text-sm text-primary mt-1 ${fontGameCompact.className}`}>{errors.email}</p>
+        )}
       </div>
 
       <div>
@@ -62,7 +64,11 @@ export default function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           className={errors.password && 'border-primary'}
         />
-        {errors.password && <p className="text-sm text-primary mt-1">{errors.password}</p>}
+        {errors.password && (
+          <p className={`text-sm text-primary mt-1 ${fontGameCompact.className}`}>
+            {errors.password}
+          </p>
+        )}
       </div>
 
       <div className={`flex flex-row justify-between`}>

@@ -90,7 +90,7 @@ const nextConfig = {
                     "frame-ancestors 'none'",
                     "base-uri 'self'",
                     "form-action 'self'",
-                    "require-trusted-types-for 'script'",
+                    // "require-trusted-types-for 'script'",
                     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
                     "font-src 'self' https://fonts.gstatic.com",
                   ].join('; '),

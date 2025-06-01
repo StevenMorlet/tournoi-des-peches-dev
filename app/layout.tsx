@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import './globals.css';
-import Image from 'next/image';
-import background from '@/app/assets/backgrounds/background.png';
+import '@/app/globals.css';
 import AppProviders from '@/app/contexts/AppProviders';
+import Navbar from '@/app/components/ui/NavBar';
+import SessionDebug from '@/app/components/debug/SessionDebug';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Le Tournoi des Péchés',
@@ -15,23 +16,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`antialiased`}>
-        <div className="fixed inset-0 -z-10">
-          <Image
-            src={background}
-            alt="Background"
-            fill
-            quality={100}
-            className="object-cover"
-            priority
-          />
-        </div>
-
+    <html lang="fr" className="h-full">
+      <body className="min-h-screen flex flex-col">
+        <div className="fixed inset-0 -z-10 bg-[url('/assets/backgrounds/background.png')] bg-cover bg-center bg-fixed" />
         <div className="fixed inset-0 bg-black/15 -z-10" />
 
         <AppProviders>
-          <div className={`relative z-20`}>{children}</div>
+          <div className={`flex flex-1 flex-col`}>
+            <header className={`flex flex-row justify-between items-center`}>
+              <Navbar />
+            </header>
+
+            <main className="flex flex-1 pt-16 px-4">
+              <SessionDebug />
+              {children}
+            </main>
+
+            <footer className="w-full backdrop-blur-sm bg-black/5 text-sm opacity-50">
+              <div className="flex flex-row justify-center gap-6 p-4">
+                <a
+                  className="hover:underline"
+                  href="https://github.com/StevenMorlet/tournoi-des-peches-dev"
+                  target="_blank"
+                >
+                  Projet GitHub
+                </a>
+              </div>
+            </footer>
+          </div>
         </AppProviders>
       </body>
     </html>

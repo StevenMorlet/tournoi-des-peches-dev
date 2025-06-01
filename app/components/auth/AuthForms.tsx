@@ -17,28 +17,32 @@ export default function AuthForms() {
         {form === 'forgot' && <ForgotPasswordForm />}
       </div>
 
-      <div className="flex justify-between items-center text-sm mt-2">
+      <div className="flex w-full text-sm mt-2">
         {form === 'login' && (
-          <button
-            onClick={() => setForm('forgot')}
-            className={`text-primary hover:text-secondary ${fontDisplay.className}`}
-          >
-            Mot de passe oublié ?
-          </button>
+          <div className={`flex w-1/2 items-center justify-start`}>
+            <button
+              onClick={() => setForm('forgot')}
+              className={`text-primary hover:text-secondary ${fontDisplay.className}`}
+            >
+              Mot de passe oublié ?
+            </button>
+          </div>
         )}
 
         {form === 'forgot' && (
-          <button
-            onClick={() => setForm('login')}
-            className={`text-primary hover:text-secondary ${fontDisplay.className}`}
-          >
-            Retour à la connexion
-          </button>
+          <div className={`flex w-full items-center justify-end`}>
+            <button
+              onClick={() => setForm('login')}
+              className={`text-primary hover:text-secondary ${fontDisplay.className}`}
+            >
+              Retour à la connexion
+            </button>
+          </div>
         )}
 
-        <div className={`text-right ${fontDisplay.className}`}>
-          {form === 'login' ? (
-            <span>
+        {form === 'login' ? (
+          <div className={`flex w-2/3 justify-end ${fontDisplay.className}`}>
+            <span className={`flex flex-row items-center justify-end`}>
               Pas encore de compte ?{' '}
               <button
                 onClick={() => setForm('signup')}
@@ -47,7 +51,9 @@ export default function AuthForms() {
                 S’inscrire
               </button>
             </span>
-          ) : form === 'signup' ? (
+          </div>
+        ) : form === 'signup' ? (
+          <div className={`flex w-full justify-end ${fontDisplay.className}`}>
             <span>
               Déjà un compte ?{' '}
               <button
@@ -57,8 +63,8 @@ export default function AuthForms() {
                 Se connecter
               </button>
             </span>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

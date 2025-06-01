@@ -46,7 +46,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-1 justify-center items-center">
       <ResetPasswordForm token={token!} />
     </div>
   );

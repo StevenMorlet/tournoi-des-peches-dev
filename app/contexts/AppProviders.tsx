@@ -3,16 +3,16 @@
 import { ReactNode } from 'react';
 import { NotificationProvider } from './NotificationContext';
 import { AuthFormProvider } from './AuthFormContext';
-import SessionDebug from '@/app/components/debug/SessionDebug';
 import { SessionProvider } from '@/app/contexts/SessionContext';
 
 export default function AppProviders({ children }: { children: ReactNode }) {
   return (
-    <SessionProvider>
-      <NotificationProvider>
-        <SessionDebug />
-        <AuthFormProvider>{children}</AuthFormProvider>
-      </NotificationProvider>
-    </SessionProvider>
+    <div className={`flex flex-1 flex-col`}>
+      <SessionProvider>
+        <NotificationProvider>
+          <AuthFormProvider>{children}</AuthFormProvider>
+        </NotificationProvider>
+      </SessionProvider>
+    </div>
   );
 }

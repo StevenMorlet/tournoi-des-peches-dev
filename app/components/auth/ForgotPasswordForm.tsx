@@ -45,7 +45,7 @@ export default function ForgotPasswordForm() {
   const isDisabled = isSending || cooldown > 0;
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <h1 className={`text-xl text-white ${fontDisplay.className}`}>Mot de passe oublié</h1>
 
       <Input

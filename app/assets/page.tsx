@@ -24,8 +24,8 @@ import {
 
 export default function Page() {
   return (
-    <div className="relative min-h-screen grid grid-rows-[20px_1fr_20px] justify-items-center items-center gap-16 px-8 pb-20 sm:px-20">
-      <main className="relative z-20 row-start-2 flex flex-col gap-8 items-center sm:items-start text-white text-center sm:text-left">
+    <div className="justify-items-center gap-16 px-20 pb-20">
+      <div className="flex flex-col gap-8 text-white">
         <div className="flex flex-row justify-center gap-20 p-20">
           <Image src={VBlancCBlanc} alt="VBCB" quality={100} style={{ width: '15%' }} />
           <Image src={VBlancCNoir} alt="VBCN" quality={100} style={{ width: '15%' }} />
@@ -37,7 +37,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit box-shadow-md">
               fontArcadeOutlined / fontArcade / fontArcadeFilledOutline
             </div>
-            <h1 className={`text-4xl sm:text-6xl drop-shadow-xl ${fontArcadeOutlined.className}`}>
+            <h1 className={`text-5xl drop-shadow-xl ${fontArcadeOutlined.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontArcade.className}`}>
@@ -56,9 +56,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit box-shadow-md">
               fontArcadeBlockOutlined / fontArcadeBlock / fontArcadeBlockFilledOutline
             </div>
-            <h1
-              className={`text-4xl sm:text-6xl drop-shadow-xl ${fontArcadeBlockOutlined.className}`}
-            >
+            <h1 className={`text-5xl drop-shadow-xl ${fontArcadeBlockOutlined.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontArcadeBlock.className}`}>
@@ -77,7 +75,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit box-shadow-md">
               fontDigitalOutlined / fontDigital / fontDigitalFilledOutline
             </div>
-            <h1 className={`text-4xl sm:text-6xl drop-shadow-xl ${fontDigitalOutlined.className}`}>
+            <h1 className={`text-5xl drop-shadow-xl ${fontDigitalOutlined.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontDigital.className}`}>
@@ -96,7 +94,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit">
               fontDisplayOutlined / fontDisplay / fontDisplayFilledOutline
             </div>
-            <h1 className={`text-4xl sm:text-6xl drop-shadow-xl ${fontDisplayOutlined.className}`}>
+            <h1 className={`text-5xl drop-shadow-xl ${fontDisplayOutlined.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontDisplay.className}`}>
@@ -115,7 +113,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit">
               fontGameOutlined / fontGame / fontGameFilledOutline
             </div>
-            <h1 className={`text-4xl sm:text-6xl drop-shadow-xl ${fontGameOutlined.className}`}>
+            <h1 className={`text-5xl drop-shadow-xl ${fontGameOutlined.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontGame.className}`}>
@@ -134,7 +132,7 @@ export default function Page() {
             <div className="bg-gray-400/30 rounded-xl font-bold p-2 w-fit h-fit">
               fontGameCompact
             </div>
-            <h1 className={`text-4xl sm:text-6xl drop-shadow-xl ${fontGameCompact.className}`}>
+            <h1 className={`text-5xl drop-shadow-xl ${fontGameCompact.className}`}>
               Bienvenue au Tournoi !
             </h1>
             <p className={`text-2xl text-justify ${fontGameCompact.className}`}>
@@ -149,7 +147,7 @@ export default function Page() {
             </p>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

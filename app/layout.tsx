@@ -4,6 +4,7 @@ import AppProviders from '@/app/contexts/AppProviders';
 import Navbar from '@/app/components/ui/NavBar';
 import SessionDebug from '@/app/components/debug/SessionDebug';
 import React from 'react';
+import { fontGame } from '@/app/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Le Tournoi des Péchés',
@@ -32,10 +33,12 @@ export default function RootLayout({
               {children}
             </main>
 
-            <footer className="w-full backdrop-blur-sm bg-black/5 text-sm opacity-50">
-              <div className="flex flex-row justify-center gap-6 p-4">
+            <footer
+              className={`w-full backdrop-blur-sm bg-black/5 text-sm opacity-50 ${fontGame.className}`}
+            >
+              <div className="flex flex-row justify-center gap-6 p-6">
                 <a
-                  className="hover:underline"
+                  className="hover:text-neutral-600"
                   href="https://github.com/StevenMorlet/tournoi-des-peches-dev"
                   target="_blank"
                 >

@@ -2,8 +2,9 @@
 
 import { createContext, useContext, ReactNode } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
+import CustomToast from '@/app/components/notifications/CustomToast';
 
-type NotificationType = 'success' | 'error' | 'loading' | 'info';
+type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
 interface NotificationContextType {
   notify: (msg: string, type?: NotificationType) => void;
@@ -13,20 +14,11 @@ const NotificationContext = createContext<NotificationContextType | null>(null);
 
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
   const notify = (msg: string, type: NotificationType = 'info') => {
-    switch (type) {
-      case 'success':
-        toast.success(msg);
-        break;
-      case 'error':
-        toast.error(msg);
-        break;
-      case 'loading':
-        toast.loading(msg);
-        break;
-      case 'info':
-      default:
-        toast(msg);
-    }
+    toast.custom((t) =>
+      t.visible ? (
+        <CustomToast message={msg} type={type} onDismiss={() => toast.dismiss(t.id)} />
+      ) : null,
+    );
   };
 
   return (
@@ -34,8 +26,12 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 3000,
-          className: 'text-sm text-white bg-neutral-800',
+          duration: 4000,
+          style: {
+            background: 'none',
+            boxShadow: 'none',
+            padding: 0,
+          },
         }}
       />
       {children}

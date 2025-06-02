@@ -67,7 +67,25 @@ export default function SessionDebug() {
           onClick={() => notify('Notification de test', 'info')}
           className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
         >
-          Test alert
+          Alert [info]
+        </button>
+        <button
+          onClick={() => notify('Notification de test', 'success')}
+          className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
+        >
+          Alert [success]
+        </button>
+        <button
+          onClick={() => notify('Notification de test', 'error')}
+          className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
+        >
+          Alert [error]
+        </button>
+        <button
+          onClick={() => notify('Notification de test', 'warning')}
+          className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
+        >
+          Alert [warning]
         </button>
         <button
           onClick={refresh}

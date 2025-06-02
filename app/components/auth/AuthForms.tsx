@@ -5,9 +5,25 @@ import { useAuthForm } from '@/app/contexts/AuthFormContext';
 import SignupForm from '@/app/components/auth/SignUpForm';
 import LoginForm from '@/app/components/auth/LogInForm';
 import ForgotPasswordForm from '@/app/components/auth/ForgotPasswordForm';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function AuthForms() {
+  const searchParams = useSearchParams();
+  const initialForm = searchParams.get('form') as 'login' | 'signup' | 'forgot' | null;
   const { form, setForm } = useAuthForm();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (initialForm) setForm(initialForm);
+  }, [initialForm, setForm]);
+
+  useEffect(() => {
+    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    current.set('form', form);
+    const query = current.toString();
+    router.replace(`?${query}`);
+  }, [form, router, searchParams]);
 
   return (
     <div className="w-full p-6 shadow-lg flex flex-col gap-6">

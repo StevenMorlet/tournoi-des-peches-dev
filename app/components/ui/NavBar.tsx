@@ -57,13 +57,13 @@ export default function Navbar() {
 
           <div className="flex items-center justify-end  w-1/4">
             <Link
-              href="/login"
+              href="/auth?form=login"
               className="text-white hover:text-primary font-medium rounded-lg text-sm px-4 py-2 transition-colors duration-200"
             >
               Connexion
             </Link>
             <Link
-              href="/signup"
+              href="/auth?form=signup"
               className="bg-primary hover:bg-ternary focus:ring-4 focus:ring-secondary text-white font-medium rounded-lg text-sm px-4 py-2 ml-2 transition-colors duration-200"
             >
               Inscription

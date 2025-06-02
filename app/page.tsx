@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { fontDisplay, fontDisplayOutlined, fontGameCompact } from './lib/fonts';
 import { User, Users } from 'lucide-react';
 
@@ -31,12 +30,6 @@ export default function Home() {
           Multijoueur
           <div className={`text-sm mt-1 opacity-60 ${fontGameCompact.className}`}>(à venir)</div>
         </button>
-      </div>
-
-      <div className="text-sm opacity-70">
-        <Link href="/auth" className="underline hover:text-primary">
-          Se connecter ou créer un compte
-        </Link>
       </div>
     </div>
   );

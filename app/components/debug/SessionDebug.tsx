@@ -2,15 +2,17 @@
 
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { useSession } from '@/app/contexts/SessionContext';
+import { useRouter } from 'next/navigation';
 
 export default function SessionDebug() {
-  const { user, isLoggedIn, refresh } = useSession();
+  const { user, isLoggedIn, refresh, logout } = useSession();
   const notify = useNotify();
+  const router = useRouter();
 
-  const logout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
-    window.location.reload();
+  const handleLogout = async () => {
+    await logout();
     notify('Déconnecté.', 'success');
+    router.refresh();
   };
 
   const cleanPending = async () => {
@@ -57,7 +59,7 @@ export default function SessionDebug() {
       <div className="flex flex-col gap-2 mt-3 text-xs">
         {isLoggedIn && (
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="bg-primary px-3 py-1 rounded hover:bg-secondary transition cursor-pointer"
           >
             Logout

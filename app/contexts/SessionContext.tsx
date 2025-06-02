@@ -13,6 +13,7 @@ interface SessionContextType {
   user: SessionUser | null;
   isLoggedIn: boolean;
   refresh: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const SessionContext = createContext<SessionContextType | null>(null);
@@ -26,12 +27,26 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     setUser(data.user ?? null);
   };
 
+  const logout = async () => {
+    const res = await fetch('/api/auth/logout', { method: 'POST' });
+    if (res.ok) {
+      setUser(null);
+    }
+  };
+
   useEffect(() => {
     void fetchSession();
   }, []);
 
   return (
-    <SessionContext.Provider value={{ user, isLoggedIn: !!user, refresh: fetchSession }}>
+    <SessionContext.Provider
+      value={{
+        user,
+        isLoggedIn: !!user,
+        refresh: fetchSession,
+        logout,
+      }}
+    >
       {children}
     </SessionContext.Provider>
   );

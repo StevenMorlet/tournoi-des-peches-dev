@@ -21,6 +21,7 @@ export async function GET() {
       username: true,
       email: true,
       admin: true,
+      avatarUrl: true,
     },
   });
 

@@ -17,6 +17,7 @@ model User {
   updatedAt                   DateTime             @updatedAt
   lastVerificationEmailSentAt DateTime?
   PasswordResetToken          PasswordResetToken[]
+  avatarUrl                   String?
 }
 
 model EmailVerificationToken {

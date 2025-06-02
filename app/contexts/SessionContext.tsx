@@ -7,6 +7,7 @@ type SessionUser = {
   email: string;
   username: string;
   admin: boolean;
+  avatarUrl: string | null;
 };
 
 interface SessionContextType {

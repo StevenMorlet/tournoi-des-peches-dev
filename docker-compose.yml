@@ -13,13 +13,22 @@ services:
       - db-data:/var/lib/postgresql/data
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
     depends_on:
       - db
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/tournoi
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: password
+      MINIO_PUBLIC_URL: http://localhost:9000/avatars
 
   minio:
     image: minio/minio
@@ -42,7 +51,8 @@ services:
       /bin/sh -c "
         sleep 5;
         mc alias set local http://minio:9000 admin password &&
-        mc mb -p local/avatars || true
+        mc mb -p local/avatars || true &&
+        mc anonymous set download local/avatars
       "
 
 volumes:

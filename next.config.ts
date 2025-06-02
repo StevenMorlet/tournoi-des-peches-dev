@@ -38,16 +38,12 @@ const nextConfig = {
       'image/webp',
     ],
     remotePatterns: [
-      //TODO: Add remote patterns for external images
-      // https://nextjs.org/docs/app/api-reference/components/image#remotepatterns
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '9000',
+        pathname: '/**',
       },
-    ],
-    localPatterns: [
-      //TODO: Add local patterns for internal images
-      // https://nextjs.org/docs/app/api-reference/components/image#localpatterns
     ],
   },
 

@@ -6,6 +6,7 @@ import { fontGameCompact } from '@/app/lib/fonts';
 import { useSession } from '@/app/contexts/SessionContext';
 import { useNotify } from '@/app/contexts/NotificationContext';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface ProfileNavBarProps {
   username: string;
@@ -13,7 +14,7 @@ interface ProfileNavBarProps {
 }
 
 export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
-  const { logout } = useSession();
+  const { logout, user } = useSession(); // récupère avatarUrl ici
   const notify = useNotify();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -47,11 +48,20 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
         <span className="text-sm font-medium">{username}</span>
       </Link>
 
-      <div
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-700 border-2 border-white text-sm font-semibold cursor-pointer hover:opacity-80"
-        onClick={() => setOpen(!open)}
-      >
-        {initials}
+      <div onClick={() => setOpen(!open)} className="cursor-pointer">
+        {user?.avatarUrl ? (
+          <Image
+            src={user.avatarUrl}
+            alt="Avatar"
+            width={40}
+            height={40}
+            className="rounded-full border-2 border-white hover:opacity-80"
+          />
+        ) : (
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-700 border-2 border-white text-sm font-semibold hover:opacity-80">
+            {initials}
+          </div>
+        )}
       </div>
 
       {open && (

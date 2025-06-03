@@ -26,7 +26,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
       <Toaster
         position="top-center"
         toastOptions={{
-          duration: 4000,
+          duration: 3000,
           style: {
             background: 'none',
             boxShadow: 'none',

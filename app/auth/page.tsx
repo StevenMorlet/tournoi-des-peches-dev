@@ -1,29 +1,50 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
 import tournoilogo from '@/app/assets/logos/VNoirCBlanc.png';
+import { useNotify } from '@/app/contexts/NotificationContext';
+import { useEffect, useState } from 'react';
 import { fontDisplayOutlined } from '@/app/lib/fonts';
 import AuthForms from '@/app/components/auth/AuthForms';
-import { useNotify } from '@/app/contexts/NotificationContext';
-import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function AuthPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const notify = useNotify();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const verified = searchParams.get('verified');
-    if (verified === '0') {
-      notify('Token invalide ou manquant.', 'error');
-    } else if (verified === '1') {
-      notify('Adresse email confirmée avec succès !', 'success');
-    } else if (verified === '2') {
-      notify('Token de confirmation expiré.', 'error');
-    } else if (verified === '3') {
-      notify('Utilisateur déjà existant ou introuvable.', 'error');
+    if (verified) {
+      switch (verified) {
+        case '0':
+          notify('Token invalide ou manquant.', 'error');
+          break;
+        case '1':
+          notify('Adresse email confirmée avec succès !', 'success');
+          break;
+        case '2':
+          notify('Token de confirmation expiré.', 'error');
+          break;
+        case '3':
+          notify('Utilisateur déjà existant ou introuvable.', 'error');
+          break;
+      }
+
+      const current = new URLSearchParams(Array.from(searchParams.entries()));
+      current.delete('verified');
+      const newQuery = current.toString();
+
+      router.replace(`?${newQuery}`, { scroll: false });
     }
-  }, [searchParams, notify]);
+  }, [searchParams, notify, isClient, router]);
 
   return (
     <div className="flex flex-1 flex-col justify-center items-center">

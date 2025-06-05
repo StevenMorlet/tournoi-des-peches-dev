@@ -1,13 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UploadCloud } from 'lucide-react';
 import Image from 'next/image';
+import { fontGameCompact } from '@/app/lib/fonts';
 
-export default function AvatarUploader() {
+interface AvatarUploaderProps {
+  avatarUrl?: string | null;
+  onUploadAction: (newUrl: string) => void;
+  onReset?: () => void;
+}
+
+export default function AvatarUploader({
+  avatarUrl,
+  onUploadAction,
+  onReset,
+}: AvatarUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    if (!file) setPreview(null);
+  }, [file]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
@@ -24,26 +39,43 @@ export default function AvatarUploader() {
     const formData = new FormData();
     formData.append('file', file);
 
-    const res = await fetch('/api/upload/avatar', {
+    const res = await fetch('/api/profile/upload-avatar', {
       method: 'POST',
       body: formData,
     });
 
     const data = await res.json();
     setUploading(false);
-    if (res.ok) {
-      console.log('Image uploaded at:', data.url);
+    if (res.ok && data.avatarUrl) {
+      onUploadAction(data.avatarUrl);
+      setFile(null);
     }
   };
 
   return (
-    <div className="w-full max-w-xs flex flex-col items-center justify-center gap-4">
+    <div
+      className={`w-full max-w-xs flex flex-col items-center justify-center gap-4 ${fontGameCompact.className}`}
+    >
       <label
         htmlFor="dropzone-file"
         className="flex flex-col items-center justify-center w-36 h-36 border-2 border-dashed border-white/30 rounded-full bg-black/40 hover:bg-black/60 cursor-pointer transition"
       >
         {preview ? (
-          <Image src={preview} alt="preview" className="w-full h-full object-cover rounded-full" />
+          <Image
+            src={preview}
+            alt="preview"
+            className="w-full h-full object-cover rounded-full"
+            width={144}
+            height={144}
+          />
+        ) : avatarUrl ? (
+          <Image
+            src={avatarUrl}
+            alt="avatar"
+            className="w-full h-full object-cover rounded-full"
+            width={144}
+            height={144}
+          />
         ) : (
           <div className="flex flex-col items-center justify-center text-white opacity-60">
             <UploadCloud className="w-6 h-6 mb-1" />
@@ -70,6 +102,12 @@ export default function AvatarUploader() {
           disabled={uploading}
         >
           {uploading ? 'Envoi...' : 'Envoyer'}
+        </button>
+      )}
+
+      {avatarUrl && onReset && !file && (
+        <button onClick={onReset} className="text-sm text-primary hover:text-secondary">
+          Supprimer l’image de profil
         </button>
       )}
     </div>

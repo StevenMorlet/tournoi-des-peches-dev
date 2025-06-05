@@ -21,7 +21,7 @@ export async function POST() {
 
     if (user?.avatarUrl) {
       const parts = user.avatarUrl.split('/');
-      const objectKey = parts.at(-1); // ex: avatar_abc123.png
+      const objectKey = parts.at(-1);
       if (objectKey) {
         await deleteObject(objectKey);
       }
@@ -29,7 +29,10 @@ export async function POST() {
 
     await prisma.user.delete({ where: { id: payload.userId } });
 
-    return NextResponse.json({ success: true });
+    const res = NextResponse.json({ success: true });
+    res.cookies.set('session', '', { maxAge: 0 });
+
+    return res;
   } catch (err) {
     console.error('Erreur suppression compte:', err);
     return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 });

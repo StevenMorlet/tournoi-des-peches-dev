@@ -13,6 +13,11 @@ export default function ProfilePage() {
   const notify = useNotify();
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
+  const handleLogout = async () => {
+    await logout();
+    window.location.href = '/auth';
+  };
+
   const handleResetAvatar = async () => {
     const res = await fetch('/api/profile/reset-avatar', { method: 'POST' });
     if (res.ok) {
@@ -30,12 +35,13 @@ export default function ProfilePage() {
     if (res.ok) {
       notify('Compte supprimé.', 'success');
       await logout();
+      window.location.href = '/auth';
     } else {
       notify('Erreur lors de la suppression.', 'error');
     }
   };
 
-  if (!user) return <p>Chargement...</p>;
+  if (!user) return null;
 
   return (
     <div className="flex flex-1 items-center justify-center text-white">
@@ -68,7 +74,7 @@ export default function ProfilePage() {
           </button>
 
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className={`px-4 py-2 bg-neutral-700 hover:bg-neutral-600 text-white rounded ${fontDisplay.className}`}
           >
             Déconnexion

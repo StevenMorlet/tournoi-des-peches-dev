@@ -5,15 +5,12 @@ import { useNotify } from '@/app/contexts/NotificationContext';
 import { fontDisplay, fontDisplayOutlined } from '@/app/lib/fonts';
 import AvatarUploader from '@/app/components/form/profile/AvatarUploader';
 import React, { useState } from 'react';
-import Link from 'next/link';
 import ChangePasswordModal from '@/app/components/form/profile/ChangePasswordModal';
 import ProfileEditableInputs from '../components/form/profile/ProfileEditableInputs';
 
 export default function ProfilePage() {
   const { user, updateUser, logout } = useSession();
   const notify = useNotify();
-  const [username] = useState(user?.username ?? '');
-  const [saving, setSaving] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleResetAvatar = async () => {
@@ -23,22 +20,6 @@ export default function ProfilePage() {
       notify('Avatar réinitialisé.', 'success');
     } else {
       notify('Erreur lors de la suppression.', 'error');
-    }
-  };
-
-  const handleUpdateUsername = async () => {
-    setSaving(true);
-    const res = await fetch('/api/profile/update-username', {
-      method: 'POST',
-      body: JSON.stringify({ username }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    setSaving(false);
-    if (res.ok) {
-      updateUser({ username });
-      notify('Nom d’utilisateur mis à jour.', 'success');
-    } else {
-      notify('Erreur lors de la mise à jour.', 'error');
     }
   };
 

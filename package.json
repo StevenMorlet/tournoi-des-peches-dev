@@ -6,26 +6,20 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-
     "generate": "npx prisma generate",
     "migrate": "npx prisma migrate dev",
-
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
     "docker:build": "docker compose build",
     "docker:restart": "docker compose down && docker compose up -d",
-
     "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.override.yml up --build",
-
     "docker:db": "docker compose up db",
     "docker:web": "docker compose up web",
     "docker:minio": "docker compose up minio",
-
     "docker:db:d": "docker compose up db -d",
     "docker:web:d": "docker compose up web -d",
     "docker:minio:d": "docker compose up minio -d",
-
     "lint": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write ."
   },

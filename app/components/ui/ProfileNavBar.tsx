@@ -14,7 +14,7 @@ interface ProfileNavBarProps {
 }
 
 export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
-  const { logout, user } = useSession(); // récupère avatarUrl ici
+  const { logout, user } = useSession();
   const notify = useNotify();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -55,7 +55,7 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
             alt="Avatar"
             width={40}
             height={40}
-            className="rounded-full border-2 border-white hover:opacity-80"
+            className="rounded-full border-2 border-white hover:opacity-80 object-cover w-10 h-10"
           />
         ) : (
           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-700 border-2 border-white text-sm font-semibold hover:opacity-80">

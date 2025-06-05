@@ -14,6 +14,7 @@ const config: Config = {
         primary: '#ef4444',
         secondary: '#b91c1c',
         ternary: '#801c1c',
+        border: '#d1d5db',
       },
     },
   },

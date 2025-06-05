@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { UploadCloud } from 'lucide-react';
 import Image from 'next/image';
 import { fontGameCompact } from '@/app/lib/fonts';
+import { useNotify } from '@/app/contexts/NotificationContext';
 
 interface AvatarUploaderProps {
   avatarUrl?: string | null;
@@ -19,6 +20,7 @@ export default function AvatarUploader({
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const notify = useNotify();
 
   useEffect(() => {
     if (!file) setPreview(null);
@@ -26,7 +28,20 @@ export default function AvatarUploader({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
+
     if (selected) {
+      if (!selected.type.startsWith('image/')) {
+        notify('Seuls les fichiers image sont autorisés.', 'warning');
+        e.target.value = '';
+        return;
+      }
+
+      if (selected.size > 2 * 1024 * 1024) {
+        notify('Image trop volumineuse (max 2 Mo).', 'warning');
+        e.target.value = '';
+        return;
+      }
+
       setFile(selected);
       setPreview(URL.createObjectURL(selected));
     }
@@ -58,7 +73,7 @@ export default function AvatarUploader({
     >
       <label
         htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-36 h-36 border-2 border-dashed border-white/30 rounded-full bg-black/40 hover:bg-black/60 cursor-pointer transition"
+        className="flex flex-col items-center justify-center w-36 h-36 border-4 border-dashed border-border/40 rounded-full bg-black/40 hover:bg-black/60 cursor-pointer transition"
       >
         {preview ? (
           <Image

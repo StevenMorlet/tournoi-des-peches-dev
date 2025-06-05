@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { verifyToken } from '@/app/lib/auth/jwt';
-import { putObject } from '@/app/lib/minio/minio';
+import { putObject, deleteObject } from '@/app/lib/minio/minio';
 import { randomUUID } from 'crypto';
 import prisma from '@/app/lib/db/prisma';
 
@@ -25,18 +25,32 @@ export async function POST(req: NextRequest) {
   const buffer = Buffer.from(arrayBuffer);
   const extension = file.name.split('.').pop();
   const key = `${randomUUID()}.${extension}`;
+  const avatarUrl = `${process.env.MINIO_PUBLIC_URL}/avatars/${key}`;
 
   try {
-    await putObject(key, buffer, file.type);
+    const user = await prisma.user.findUnique({
+      where: { email: payload.email },
+      select: { avatarUrl: true },
+    });
 
-    const url = `${process.env.MINIO_PUBLIC_URL}/avatars/${key}`;
+    if (user?.avatarUrl?.includes('/avatars/')) {
+      const oldKey = user.avatarUrl.split('/avatars/')[1];
+
+      try {
+        await deleteObject(oldKey);
+      } catch (err) {
+        console.warn(`[Minio] Impossible de supprimer l'ancien avatar (${oldKey}):`, err);
+      }
+    }
+
+    await putObject(key, buffer, file.type);
 
     await prisma.user.update({
       where: { email: payload.email },
-      data: { avatarUrl: url },
+      data: { avatarUrl },
     });
 
-    return NextResponse.json({ url }, { status: 200 });
+    return NextResponse.json({ avatarUrl }, { status: 200 });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: 'Upload failed' }, { status: 500 });

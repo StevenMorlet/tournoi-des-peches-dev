@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { UploadCloud } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AvatarUploader() {
   const [file, setFile] = useState<File | null>(null);
@@ -42,7 +43,7 @@ export default function AvatarUploader() {
         className="flex flex-col items-center justify-center w-36 h-36 border-2 border-dashed border-white/30 rounded-full bg-black/40 hover:bg-black/60 cursor-pointer transition"
       >
         {preview ? (
-          <img src={preview} alt="preview" className="w-full h-full object-cover rounded-full" />
+          <Image src={preview} alt="preview" className="w-full h-full object-cover rounded-full" />
         ) : (
           <div className="flex flex-col items-center justify-center text-white opacity-60">
             <UploadCloud className="w-6 h-6 mb-1" />

@@ -15,6 +15,7 @@ interface SessionContextType {
   isLoggedIn: boolean;
   refresh: () => Promise<void>;
   logout: () => Promise<void>;
+  updateUser: (updates: Partial<SessionUser>) => void;
 }
 
 const SessionContext = createContext<SessionContextType | null>(null);
@@ -35,6 +36,10 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const updateUser = (updates: Partial<SessionUser>) => {
+    setUser((prev) => (prev ? { ...prev, ...updates } : prev));
+  };
+
   useEffect(() => {
     void fetchSession();
   }, []);
@@ -46,6 +51,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
         isLoggedIn: !!user,
         refresh: fetchSession,
         logout,
+        updateUser,
       }}
     >
       {children}

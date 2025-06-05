@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 export const s3Client = new S3Client({
   region: 'eu-west-3',
@@ -19,5 +19,13 @@ export async function putObject(key: string, body: Buffer, contentType: string) 
     ACL: 'public-read',
   });
 
+  await s3Client.send(command);
+}
+
+export async function deleteObject(key: string) {
+  const command = new DeleteObjectCommand({
+    Bucket: 'avatars',
+    Key: key,
+  });
   await s3Client.send(command);
 }

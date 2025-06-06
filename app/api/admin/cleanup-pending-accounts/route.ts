@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/app/lib/db/prisma';
+import prisma from '@/lib/db/prisma';
 
 export async function POST() {
   const expiryThreshold = new Date(Date.now() - 1000 * 60 * 10);

@@ -1,9 +1,9 @@
 export const runtime = 'nodejs';
 
 import { NextResponse } from 'next/server';
-import prisma from '@/app/lib/db/prisma';
+import prisma from '@/lib/db/prisma';
 import bcrypt from 'bcrypt';
-import { signToken } from '@/app/lib/auth/jwt';
+import { signToken } from '@/lib/auth/jwt';
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();

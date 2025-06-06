@@ -1,8 +1,8 @@
 export const runtime = 'nodejs';
 
 import { cookies } from 'next/headers';
-import { verifyToken } from '@/app/lib/auth/jwt';
-import prisma from '@/app/lib/db/prisma';
+import { verifyToken } from '@/lib/auth/jwt';
+import prisma from '@/lib/db/prisma';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

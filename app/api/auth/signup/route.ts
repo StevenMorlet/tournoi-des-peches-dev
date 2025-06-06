@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/app/lib/db/prisma';
+import prisma from '@/lib/db/prisma';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
-import { sendEmailVerification } from '@/app/lib/mailing/mailSender';
+import { sendEmailVerification } from '@/lib/mailing/mailSender';
 
 export async function POST(req: Request) {
   const { email, username, password } = await req.json();

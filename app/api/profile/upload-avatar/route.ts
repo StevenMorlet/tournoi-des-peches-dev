@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { verifyToken } from '@/app/lib/auth/jwt';
-import { putObject, deleteObject } from '@/app/lib/minio/minio';
+import { verifyToken } from '@/lib/auth/jwt';
+import { putObject, deleteObject } from '@/lib/minio/minio';
 import { randomUUID } from 'crypto';
-import prisma from '@/app/lib/db/prisma';
+import prisma from '@/lib/db/prisma';
 
 export async function POST(req: NextRequest) {
   const cookieStore = await cookies();

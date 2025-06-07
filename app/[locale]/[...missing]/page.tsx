@@ -16,7 +16,7 @@ export default function NotFoundCatchAll() {
       </h1>
       <p className="text-3xl mb-6">{t('subtitle')}</p>
       <Link
-        href="/public"
+        href="/"
         className={`px-6 py-2 border border-red-500 rounded hover:bg-red-600 hover:text-white transition ${fontDisplay.className}`}
       >
         {t('cta')}

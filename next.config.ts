@@ -20,17 +20,17 @@
  * - Redirects and rewrites
  */
 
-const nextConfig = {
-  // React strict mode
+import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // Enable experimental features
   experimental: {
     serverActions: {}, // Server actions
     optimizeCss: true, // CSS Optimization
   },
 
-  // Configure image optimization
   images: {
     formats: [
       // https://nextjs.org/docs/app/api-reference/components/image#formats
@@ -47,7 +47,6 @@ const nextConfig = {
     ],
   },
 
-  // Configure headers for security
   headers: async () => {
     return [
       {
@@ -86,7 +85,6 @@ const nextConfig = {
                     "frame-ancestors 'none'",
                     "base-uri 'self'",
                     "form-action 'self'",
-                    // "require-trusted-types-for 'script'",
                     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
                     "font-src 'self' https://fonts.gstatic.com",
                   ].join('; '),
@@ -108,10 +106,6 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
     styledComponents: true,
   },
-
-  //TODO: i18n (internationalization) config
-  // For App Router, internationalization is handled through the app directory structure
-  // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
   //TODO: Redirections
   // redirects: async () => {
@@ -148,4 +142,5 @@ const nextConfig = {
   //   },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

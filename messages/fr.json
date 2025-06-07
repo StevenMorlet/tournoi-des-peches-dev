@@ -1,6 +1,9 @@
 {
   "HomePage": {
-    "title": "Salut Monde!",
-    "about": "Aller vers la page about"
+    "title": "Entrez dans le Tournoi !"
+  },
+  "NotFound": {
+    "subtitle": "Bah alors, on s’est perdu... pécheur?",
+    "cta": "Revenir à l’accueil"
   }
 }

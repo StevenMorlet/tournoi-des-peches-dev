@@ -7,7 +7,7 @@ import { SessionProvider } from '@/contexts/SessionContext';
 
 export default function AppProviders({ children }: { children: ReactNode }) {
   return (
-    <div className={`flex flex-1 flex-col`}>
+    <div className={`min-h-screen`}>
       <SessionProvider>
         <NotificationProvider>
           <AuthFormProvider>{children}</AuthFormProvider>

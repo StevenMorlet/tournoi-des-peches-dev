@@ -1,37 +1,38 @@
-import '@/app/globals.css';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import '../globals.css';
+import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import React from 'react';
 import AppProviders from '@/contexts/AppProviders';
 import Navbar from '@/components/ui/NavBar';
 import SessionDebug from '@/components/debug/SessionDebug';
 import { fontGame } from '@/lib/fonts';
-import { getMessages } from 'next-intl/server';
+import type { ReactNode } from 'react';
+import { getMessages } from '@/lib/i18n/messages';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }) {
   const locale = params.locale;
 
-  if (!locale || !hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  const messages = await getMessages({ locale });
+  const messages = await getMessages(locale);
+  if (!messages) notFound();
 
   return (
-    <html lang={locale} className="h-full">
-      <body className="min-h-screen flex flex-col">
+    <html lang={locale}>
+      <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="fixed inset-0 -z-10 bg-[url('/assets/backgrounds/background.png')] bg-cover bg-center bg-fixed" />
           <div className="fixed inset-0 bg-black/15 -z-10" />
           <AppProviders>
-            <div className="flex flex-1 flex-col">
+            <div className="min-h-screen flex flex-col">
               <header className="flex flex-row justify-between items-center">
                 <Navbar />
               </header>

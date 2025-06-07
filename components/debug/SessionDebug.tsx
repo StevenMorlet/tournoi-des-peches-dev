@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function SessionDebug() {
+  if (process.env.NODE_ENV === 'production') return null;
+
   const { user, isLoggedIn, refresh, logout } = useSession();
   const notify = useNotify();
   const router = useRouter();
@@ -39,7 +41,7 @@ export default function SessionDebug() {
   };
 
   return (
-    <div className="mt-40 fixed w-fit h-fit backdrop-blur-sm shadow-md px-4 py-2 text-sm text-white bg-black/40 rounded-md top-0 z-50">
+    <div className="mt-40 fixed w-fit h-fit backdrop-blur-sm shadow-md px-4 py-2 text-sm text-white bg-black/40 rounded-md top-0 z-50 ">
       <div className={`font-bold ${isLoggedIn ? 'text-green-400' : 'text-red-400'}`}>
         {isLoggedIn ? 'Connected' : 'Disconnected'}
       </div>

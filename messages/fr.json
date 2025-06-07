@@ -60,6 +60,7 @@
 
     "invalidEmail": "Email invalide",
     "emailConflict": "Conflit d'emails",
+    "usernameConflict": "Conflit de nom d'utilisateur",
 
     "invalidFile": "Fichier invalide",
     "uploadFailed": "Echec de l'envoi",

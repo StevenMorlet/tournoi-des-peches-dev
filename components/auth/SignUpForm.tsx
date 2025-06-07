@@ -6,8 +6,10 @@ import { useDebouncedValue } from '@/lib/hooks/useDebouncedValue';
 import ResendConfirmationButton from '@/components/auth/ResendConfirmationEmailButton';
 import Link from 'next/link';
 import Input from '@/components/form/input/Input';
+import { useTranslations } from 'next-intl';
 
 export default function SignUpForm() {
+  const g = useTranslations('General');
   const [rawFields, setRawFields] = useState({
     email: '',
     username: '',
@@ -33,12 +35,12 @@ export default function SignUpForm() {
 
     const newErrors: Partial<typeof rawFields> = {};
     Object.entries(fields).forEach(([key, value]) => {
-      if (!value) newErrors[key as keyof typeof rawFields] = 'Ce champ est requis';
+      if (!value) newErrors[key as keyof typeof rawFields] = g('thisFieldIsRequired');
     });
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setMsg('Champs requis manquants.');
+      setMsg(g('missingFields'));
       setIsError(true);
       return;
     }
@@ -53,11 +55,11 @@ export default function SignUpForm() {
 
     if (!res.ok) {
       const serverErrors: Partial<typeof rawFields> = {};
-      if (data?.fields?.email) serverErrors.email = 'Email déjà utilisé.';
-      if (data?.fields?.username) serverErrors.username = 'Nom déjà utilisé.';
-      if (data?.fields?.password) serverErrors.password = 'Mot de passe invalide.';
+      if (data?.fields?.email) serverErrors.email = g('alreadyUsed');
+      if (data?.fields?.username) serverErrors.username = g('alreadyUsed');
+      if (data?.fields?.password) serverErrors.password = g('invalidPassword');
       setErrors(serverErrors);
-      setMsg(data.error || 'Erreur inconnue.');
+      setMsg(data.error || g('unknownError'));
       setIsError(true);
     } else {
       setMsg(data.message);
@@ -66,7 +68,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-xl">
       <div>
         <Input
           type="email"
@@ -89,7 +91,7 @@ export default function SignUpForm() {
         <Input
           type="text"
           name="username"
-          placeholder="Nom d’utilisateur"
+          placeholder={g('username')}
           value={rawFields.username}
           onChange={handleChange}
           disabled={confirmationSent}
@@ -109,7 +111,7 @@ export default function SignUpForm() {
         <Input
           type="password"
           name="password"
-          placeholder="Mot de passe"
+          placeholder={g('password')}
           value={rawFields.password}
           onChange={handleChange}
           disabled={confirmationSent}
@@ -132,14 +134,14 @@ export default function SignUpForm() {
             className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 ${fontDisplay.className} opacity-50 cursor-not-allowed`}
             disabled
           >
-            S’inscrire
+            {g('toSignUp')}
           </button>
         )) || (
           <button
             type="submit"
             className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
           >
-            S’inscrire
+            {g('toSignUp')}
           </button>
         )}
 
@@ -148,7 +150,7 @@ export default function SignUpForm() {
           passHref
           className={`bg-black text-white px-4 py-2 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer w-fit`}
         >
-          Annuler
+          {g('cancel')}
         </Link>
       </div>
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNotify } from '@/contexts/NotificationContext';
 import { fontDisplay, fontGameCompact } from '@/lib/fonts';
 import Input from '@/components/form/input/Input';
+import { useTranslations } from 'next-intl';
 
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function ForgotPasswordForm() {
   const [cooldown, setCooldown] = useState(0);
   const [error, setError] = useState('');
   const notify = useNotify();
+  const g = useTranslations('General');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,9 +28,9 @@ export default function ForgotPasswordForm() {
     const data = await res.json();
 
     if (!res.ok) {
-      setError(data.error || "Erreur lors de l'envoi");
+      setError(data.error || g('sendingError'));
     } else {
-      notify('Email envoyé avec un lien de réinitialisation.', 'success');
+      notify(g('emailSent'), 'success');
       setCooldown(10);
     }
 
@@ -46,12 +48,12 @@ export default function ForgotPasswordForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-      <h1 className={`text-xl text-white ${fontDisplay.className}`}>Mot de passe oublié</h1>
+      <h1 className={`text-xl text-white ${fontDisplay.className}`}>{g('forgottenPassword')}</h1>
 
       <Input
         type="email"
         name="email"
-        placeholder="Entrez votre email"
+        placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className={error && 'border-primary'}
@@ -65,7 +67,7 @@ export default function ForgotPasswordForm() {
           isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-ternary cursor-pointer'
         } ${fontDisplay.className}`}
       >
-        {isSending ? 'Envoi...' : cooldown > 0 ? `Envoyer dans ${cooldown}s` : 'Envoyer le lien'}
+        {isSending ? g('sending') : cooldown > 0 ? `${g('sendIn')} ${cooldown}s` : g('sendEmail')}
       </button>
     </form>
   );

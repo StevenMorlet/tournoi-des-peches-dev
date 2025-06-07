@@ -7,6 +7,7 @@ import { fontDisplay, fontGameCompact } from '@/lib/fonts';
 import { useSession } from '@/contexts/SessionContext';
 import Link from 'next/link';
 import Input from '@/components/form/input/Input';
+import { useTranslations } from 'next-intl';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ export default function LoginForm() {
   const notify = useNotify();
   const router = useRouter();
   const { refresh } = useSession();
+  const g = useTranslations('General');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,9 +32,9 @@ export default function LoginForm() {
 
     if (!res.ok) {
       setErrors(data.fields || {});
-      notify(data.error || 'Erreur inconnue', 'error');
+      notify(data.error || g('unknownError'), 'error');
     } else {
-      notify('Connexion réussie !', 'success');
+      notify(g('connectionEstablished'), 'success');
       router.push('/');
     }
 
@@ -40,7 +42,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-xl">
       <div>
         <Input
           type="email"
@@ -59,7 +61,7 @@ export default function LoginForm() {
         <Input
           type="password"
           name="password"
-          placeholder="Mot de passe"
+          placeholder={g('password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className={errors.password && 'border-primary'}
@@ -76,7 +78,7 @@ export default function LoginForm() {
           type="submit"
           className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
         >
-          Se connecter
+          {g('toLogin')}
         </button>
 
         <Link
@@ -84,7 +86,7 @@ export default function LoginForm() {
           passHref
           className={`bg-black text-white px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
         >
-          Annuler
+          {g('cancel')}
         </Link>
       </div>
     </form>

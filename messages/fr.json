@@ -1,9 +1,142 @@
 {
-  "HomePage": {
-    "title": "Entrez dans le Tournoi !"
+  "General": {
+    "home": "Accueil",
+    "profile": "Profil",
+    "theTournament": "Le Tournoi",
+    "enterTheTournament": "Entrez dans le Tournoi !",
+    "welcomeToTheTournament": "Bienvenue au Tournoi !",
+
+    "solo": "Solo",
+    "multiplayer": "Multijoueur",
+    "soloMode": "Mode Solo",
+    "multiplayerMode": "Mode Multijoueur",
+    "statistics": "Statistiques",
+    "tournamentLogo": "Logo du Tournoi",
+    "comingSoon": "à venir",
+
+    "import": "Importer",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "reinitialize": "Réinitialiser",
+    "connection": "Connexion",
+    "disconnection": "Déconnexion",
+    "signup": "Inscription",
+    "toSignUp": "S'inscrire",
+    "toLogin": "Se connecter",
+    "unauthorized": "Non autorisé",
+
+    "connectionEstablished": "Connexion établie",
+    "disconnectionEstablished": "Déconnexion effectuée",
+    "emailConfirmed": "Adresse email confirmée avec succès !",
+
+    "email": "Email",
+    "emailSent": "Email envoyé",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "sendIn": "Envoyer dans",
+    "sendEmail": "Envoyer Email",
+
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+
+    "oldPassword": "Ancien mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "changePassword": "Changer le mot de passe",
+    "deleteAccount": "Supprimer le compte",
+    "forgottenPassword": "Mot de passe oublié",
+    "invalidPassword": "Mot de passe invalide",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas",
+    "passwordUpdated": "Mot de passe mis à jour",
+    "invalidPreviousPassword": "Ancien mot de passe invalide",
+
+    "invalidCredentials": "Identifiants invalides",
+    "nonVerifiedAccount": "Compte non vérifié",
+
+    "invalidLink": "Lien invalide ou manquant",
+    "expiredLink": "Lien invalide ou expiré",
+
+    "invalidEmail": "Email invalide",
+    "emailConflict": "Conflit d'emails",
+
+    "invalidFile": "Fichier invalide",
+    "uploadFailed": "Echec de l'envoi",
+
+    "anErrorOccurred": "Une erreur est survenue",
+    "passwordResetError": "Erreur réinitialisation de mot de passe",
+    "deleteError": "Erreur lors de la suppression",
+    "sendingError": "Erreur lors de l'envoi",
+    "serverError": "Erreur serveur",
+    "unknownError": "Erreur inconnue",
+
+    "emailRequired": "Email requis",
+    "missingFields": "Champs requis manquants",
+    "thisFieldIsRequired": "Ce champ est requis",
+
+    "alreadyUsed": "Déjà utilisé",
+    "userNotFound": "Utilisateur introuvable",
+    "userAlreadyExists": "Utilisateur déjà existant",
+    "noAccountCorrespondingToEmail": "Pas de compte correspondant à l'email",
+    "noPendingAccountForEmail": "Pas de compte en attente de confirmation",
+
+    "wait10sBeforeNewRequest": "Attendre 10s avant une nouvelle requête",
+    "invalidRequest": "Requête invalide",
+
+    "missingToken": "Token manquant",
+    "invalidToken": "Token invalide",
+    "noTokenToValidate": "Pas de Token à valider",
+
+    "emailConfirmationSubject": "Confirmez votre adresse email",
+    "emailConfirmationTitle": "Bienvenue au Tournoi !",
+    "emailConfirmationText": "Pour valider votre adresse email, cliquez sur le bouton ci-dessous.",
+    "emailConfirmationButtonText": "Confirmer mon email",
+    "emailConfirmationFooter": "Si vous n’avez pas fait cette demande, vous pouvez ignorer ce message.",
+
+    "emailReinitializationSubject": "Réinitialisation de votre mot de passe",
+    "emailReinitializationTitle": "Réinitialisation du mot de passe",
+    "emailReinitializationText": "Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe.",
+    "emailReinitializationButtonText": "Réinitialiser mon mot de passe",
+    "emailReinitializationFooter": "Si vous n’avez pas fait cette demande, vous pouvez ignorer ce message."
   },
-  "NotFound": {
-    "subtitle": "Bah alors, on s’est perdu... pécheur?",
-    "cta": "Revenir à l’accueil"
+  "LocaleLayoutPage": {
+    "githubProject": "Projet GitHub"
+  },
+  "AuthPage": {
+    "userAlreadyExistsOrNotFound": "Utilisateur déjà existant ou introuvable"
+  },
+  "AuthForms": {
+    "backToConnection": "Retour à la connexion",
+    "noAccountYet": "Pas encore de compte ?",
+    "alreadyHaveAnAccount": "Déjà un compte ?"
+  },
+  "ProfilePage": {
+    "avatarReinitialized": "Avatar réinitialisé",
+    "avatarDeleteConfirmation": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+    "accountDeleted": "Compte supprimé",
+    "avatarUpdated": "Avatar mis à jour",
+    "profileUpdated": "Profil mis à jour"
+  },
+  "ResetPassword": {
+    "enterAPassword": "Veuillez saisir un mot de passe",
+    "confirmThePassword": "Veuillez confirmer le mot de passe",
+    "passwordReinitialized": "Mot de passe réinitialisé. Vous pouvez vous connecter",
+    "reinitializePassword": "Réinitialiser le mot de passe"
+  },
+  "AvatarUploader": {
+    "onlyImageFiles": "Seuls les fichiers image sont autorisés",
+    "imageTooHeavy": "Image trop volumineuse (max 2 Mo)",
+    "yourAvatar": "Votre avatar"
+  },
+  "NotFoundPage": {
+    "subtitle": "Bah alors, on s’est perdu... pécheur?"
+  },
+  "Debug": {
+    "deconnected": "Déconnecté",
+    "error": "Erreur",
+    "removedAccounts": "Comptes supprimés",
+    "requestError": "Erreur lors de la requête",
+    "testNotification": "Notification de test"
   }
 }

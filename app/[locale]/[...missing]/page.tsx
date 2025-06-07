@@ -5,7 +5,8 @@ import { fontDisplay, fontDisplayOutlined } from '@/lib/fonts';
 import { useTranslations } from 'next-intl';
 
 export default function NotFoundCatchAll() {
-  const t = useTranslations('NotFound');
+  const t = useTranslations('NotFoundPage');
+  const g = useTranslations('General');
 
   return (
     <div
@@ -19,7 +20,7 @@ export default function NotFoundCatchAll() {
         href="/"
         className={`px-6 py-2 border border-red-500 rounded hover:bg-red-600 hover:text-white transition ${fontDisplay.className}`}
       >
-        {t('cta')}
+        {g('home')}
       </Link>
     </div>
   );

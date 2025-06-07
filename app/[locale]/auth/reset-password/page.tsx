@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ResetPasswordForm from '@/components/auth/ResetPasswordForm';
 import { useNotify } from '@/contexts/NotificationContext';
+import { useTranslations } from 'next-intl';
 
 export default function ResetPasswordPage() {
   const [isValid, setIsValid] = useState<boolean | null>(null);
@@ -11,10 +12,11 @@ export default function ResetPasswordPage() {
   const token = searchParams.get('token');
   const notify = useNotify();
   const router = useRouter();
+  const g = useTranslations('General');
 
   useEffect(() => {
     if (!token) {
-      notify('Lien invalide ou manquant.', 'error');
+      notify(g('invalidLink'), 'error');
       router.replace('/auth');
       return;
     }
@@ -26,20 +28,20 @@ export default function ResetPasswordPage() {
 
         if (!res.ok || !data.valid) {
           setIsValid(false);
-          notify('Lien de réinitialisation invalide ou expiré.', 'error');
+          notify(g('expiredLink'), 'error');
           router.replace('/auth');
         } else {
           setIsValid(true);
         }
       } catch {
         setIsValid(false);
-        notify('Une erreur est survenue.', 'error');
+        notify(g('anErrorOccurred'), 'error');
         router.replace('/auth');
       }
     };
 
     void validateToken();
-  }, [token, notify, router]);
+  }, [token, notify, router, g]);
 
   if (isValid !== true) {
     return null;

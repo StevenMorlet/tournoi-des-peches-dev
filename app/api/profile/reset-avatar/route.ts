@@ -3,14 +3,18 @@ import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/auth/jwt';
 import prisma from '@/lib/db/prisma';
 import { deleteObject } from '@/lib/minio/minio';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
-export async function POST() {
+export async function POST(req: Request) {
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
+  const t = getT(locale, 'ProfilePage');
   const cookieStore = await cookies();
   const session = cookieStore.get('session')?.value;
   const payload = session ? verifyToken(session) : null;
 
   if (!payload?.email) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: g('unauthorized') }, { status: 401 });
   }
 
   try {
@@ -29,9 +33,9 @@ export async function POST() {
       data: { avatarUrl: null },
     });
 
-    return NextResponse.json({ message: 'Avatar supprimé.' }, { status: 200 });
+    return NextResponse.json({ message: t('avatarReinitialized') }, { status: 200 });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 });
+    return NextResponse.json({ error: g('serverError') }, { status: 500 });
   }
 }

@@ -7,6 +7,7 @@ import { useSession } from '@/contexts/SessionContext';
 import { useNotify } from '@/contexts/NotificationContext';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface ProfileNavBarProps {
   username: string;
@@ -19,6 +20,7 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const g = useTranslations('General');
 
   const initials = username
     .split(' ')
@@ -28,7 +30,7 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
 
   const handleLogout = async () => {
     await logout();
-    notify('Déconnecté.', 'success');
+    notify(g('disconnectionEstablished'), 'success');
     router.refresh();
   };
 
@@ -75,7 +77,7 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
           <ul className="py-1">
             <li>
               <Link href="/profile" className="block px-4 py-2 hover:bg-neutral-700 transition">
-                Profil
+                {g('profile')}
               </Link>
             </li>
             <li>
@@ -83,7 +85,7 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
                 onClick={handleLogout}
                 className="w-full text-left block px-4 py-2 hover:bg-neutral-700 text-red-400 transition"
               >
-                Déconnexion
+                {g('disconnection')}
               </button>
             </li>
           </ul>

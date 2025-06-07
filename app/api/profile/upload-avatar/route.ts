@@ -4,21 +4,24 @@ import { verifyToken } from '@/lib/auth/jwt';
 import { putObject, deleteObject } from '@/lib/minio/minio';
 import { randomUUID } from 'crypto';
 import prisma from '@/lib/db/prisma';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
 export async function POST(req: NextRequest) {
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
   const cookieStore = await cookies();
   const session = cookieStore.get('session')?.value;
   const payload = session ? verifyToken(session) : null;
 
   if (!payload?.email) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ error: g('unauthorized') }, { status: 401 });
   }
 
   const formData = await req.formData();
   const file = formData.get('file') as File;
 
   if (!file || !file.type.startsWith('image/')) {
-    return NextResponse.json({ error: 'Invalid file' }, { status: 400 });
+    return NextResponse.json({ error: g('invalidFile') }, { status: 400 });
   }
 
   const arrayBuffer = await file.arrayBuffer();
@@ -39,7 +42,7 @@ export async function POST(req: NextRequest) {
       try {
         await deleteObject(oldKey);
       } catch (err) {
-        console.warn(`[Minio] Impossible de supprimer l'ancien avatar (${oldKey}):`, err);
+        console.warn(`[Minio] Unable to delete object (${oldKey}):`, err);
       }
     }
 
@@ -53,6 +56,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ avatarUrl }, { status: 200 });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+    return NextResponse.json({ error: g('uploadFailed') }, { status: 500 });
   }
 }

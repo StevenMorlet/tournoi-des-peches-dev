@@ -11,7 +11,7 @@ export async function POST() {
     },
   });
 
-  console.log(`${result.count} comptes pending supprimés`);
+  console.log(`${result.count} pending accounts deleted`);
 
   return NextResponse.json({ deleted: result.count });
 }

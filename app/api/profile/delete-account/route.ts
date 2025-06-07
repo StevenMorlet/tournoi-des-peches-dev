@@ -3,14 +3,17 @@ import { verifyToken } from '@/lib/auth/jwt';
 import prisma from '@/lib/db/prisma';
 import { deleteObject } from '@/lib/minio/minio';
 import { NextResponse } from 'next/server';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
-export async function POST() {
+export async function POST(req: Request) {
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
   const cookieStore = await cookies();
   const token = cookieStore.get('session')?.value;
   const payload = token ? verifyToken(token) : null;
 
   if (!payload?.userId) {
-    return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    return NextResponse.json({ error: g('unauthorized') }, { status: 401 });
   }
 
   try {
@@ -34,7 +37,7 @@ export async function POST() {
 
     return res;
   } catch (err) {
-    console.error('Erreur suppression compte:', err);
-    return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 });
+    console.error('Account deleting error : ', err);
+    return NextResponse.json({ error: g('serverError') }, { status: 500 });
   }
 }

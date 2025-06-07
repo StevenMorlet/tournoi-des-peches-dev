@@ -1,48 +1,48 @@
-import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken } from '@/lib/auth/jwt';
 import prisma from '@/lib/db/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
 export async function POST(req: NextRequest) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('session')?.value;
-  const payload = token ? verifyToken(token) : null;
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
+  const t = getT(locale, 'ProfilePage');
+  const token = req.cookies.get('session')?.value;
+  if (!token) return NextResponse.json({ error: g('unauthorized') }, { status: 401 });
 
-  if (!payload?.userId) {
-    return NextResponse.json({ error: 'Non autorisé.' }, { status: 401 });
+  const payload = verifyToken(token);
+  if (!payload) return NextResponse.json({ error: g('invalidToken') }, { status: 401 });
+
+  const { userId } = payload;
+
+  const { email, username } = await req.json();
+  const errors: Partial<{ email: string; username: string }> = {};
+
+  if (!email) errors.email = g('thisFieldIsRequired');
+  if (!username) errors.username = g('thisFieldIsRequired');
+
+  if (Object.keys(errors).length > 0) {
+    return NextResponse.json({ error: g('missingFields'), fields: errors }, { status: 400 });
   }
 
-  const { username, email } = await req.json();
-  const updates: Record<string, string> = {};
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (!user) return NextResponse.json({ error: g('userNotFound') }, { status: 404 });
 
-  if (username) {
-    if (username.trim().length < 3) {
-      return NextResponse.json({ error: 'Nom d’utilisateur trop court.' }, { status: 400 });
-    }
-    updates.username = username.trim();
-  }
-
-  if (email) {
-    const isUsed = await prisma.user.findFirst({
-      where: { email, NOT: { id: payload.userId } },
+  if (email !== user.email) {
+    const emailExists = await prisma.user.findUnique({
+      where: { email },
     });
 
-    if (isUsed) {
-      return NextResponse.json({ error: 'Email déjà utilisé.' }, { status: 409 });
+    if (emailExists) {
+      errors.email = g('alreadyUsed');
+      return NextResponse.json({ error: g('emailConflict'), fields: errors }, { status: 400 });
     }
-
-    updates.email = email.toLowerCase();
   }
 
-  try {
-    const updated = await prisma.user.update({
-      where: { id: payload.userId },
-      data: updates,
-    });
+  await prisma.user.update({
+    where: { id: userId },
+    data: { email, username },
+  });
 
-    return NextResponse.json({ success: true, user: updated });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 });
-  }
+  return NextResponse.json({ message: t('profileUpdated') });
 }

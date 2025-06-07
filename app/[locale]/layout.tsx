@@ -27,7 +27,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body>
+      <body className="min-h-screen flex flex-col bg-black text-white">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="fixed inset-0 -z-10 bg-[url('/assets/backgrounds/background.png')] bg-cover bg-center bg-fixed" />
           <div className="fixed inset-0 bg-black/15 -z-10" />
@@ -49,7 +49,7 @@ export default async function LocaleLayout({
                     href="https://github.com/StevenMorlet/tournoi-des-peches-dev"
                     target="_blank"
                   >
-                    Projet GitHub
+                    {messages.LocaleLayoutPage.githubProject}
                   </a>
                 </div>
               </footer>

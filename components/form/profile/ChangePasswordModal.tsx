@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { fontDisplay, fontGameCompact } from '@/lib/fonts';
 import { useNotify } from '@/contexts/NotificationContext';
+import { useTranslations } from 'next-intl';
 
 interface Props {
   open: boolean;
@@ -16,10 +17,11 @@ export default function ChangePasswordModal({ open, onCloseAction }: Props) {
   const [confirm, setConfirm] = useState('');
   const [loading, setLoading] = useState(false);
   const notify = useNotify();
+  const g = useTranslations('General');
 
   const handleSubmit = async () => {
     if (newPassword !== confirm) {
-      notify('Les mots de passe ne correspondent pas.', 'error');
+      notify(g('passwordsDontMatch'), 'error');
       return;
     }
 
@@ -32,11 +34,11 @@ export default function ChangePasswordModal({ open, onCloseAction }: Props) {
     setLoading(false);
 
     if (res.ok) {
-      notify('Mot de passe mis à jour.', 'success');
+      notify(g('passwordUpdated'), 'success');
       onCloseAction();
     } else {
       const data = await res.json();
-      notify(data.error || 'Erreur inconnue.', 'error');
+      notify(data.error || g('unknownError'), 'error');
     }
   };
 
@@ -49,27 +51,27 @@ export default function ChangePasswordModal({ open, onCloseAction }: Props) {
           className="bg-zinc-900 text-white border-4 border-white/10 rounded-xl px-14 py-8 w-full max-w-xl shadow-xl space-y-4"
         >
           <Dialog.Title className={`text-xl ${fontDisplay.className}`}>
-            Changer de mot de passe
+            {g('changePassword')}
           </Dialog.Title>
 
           <div className={`${fontGameCompact.className} space-y-4`}>
             <input
               type="password"
-              placeholder="Ancien mot de passe"
+              placeholder={g('oldPassword')}
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
               className="w-full p-2 rounded bg-zinc-800 border-4 border-border placeholder:opacity-50"
             />
             <input
               type="password"
-              placeholder="Nouveau mot de passe"
+              placeholder={g('newPassword')}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="w-full p-2 rounded bg-zinc-800 border-4 border-border placeholder:opacity-50"
             />
             <input
               type="password"
-              placeholder="Confirmer le nouveau mot de passe"
+              placeholder={g('confirmPassword')}
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
               className="w-full p-2 rounded bg-zinc-800 border-4 border-border placeholder:opacity-50"
@@ -81,14 +83,14 @@ export default function ChangePasswordModal({ open, onCloseAction }: Props) {
               onClick={onCloseAction}
               className={`px-4 py-2 bg-black text-white text-center rounded-md border-2 border-border hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
             >
-              Annuler
+              {g('cancel')}
             </button>
             <button
               onClick={handleSubmit}
               disabled={loading}
               className={`px-4 py-2 bg-primary text-white text-center rounded-md hover:bg-ternary ${fontDisplay.className} transition cursor-pointer`}
             >
-              {loading ? 'Envoi...' : 'Valider'}
+              {loading ? g('sending') : g('validate')}
             </button>
           </div>
         </Dialog.Panel>

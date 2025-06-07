@@ -9,6 +9,8 @@ import Link from 'next/link';
 export default function ProfileEditable() {
   const { user, updateUser } = useSession();
   const notify = useNotify();
+  const g = useTranslations('General');
+  const t = useTranslations('ProfilePage');
 
   const [fields, setFields] = useState({
     email: user?.email || '',
@@ -68,15 +70,15 @@ export default function ProfileEditable() {
           disabled={saving || (fields.email === user?.email && fields.username === user?.username)}
           className={`mt-2 px-4 py-2 w-full rounded bg-primary hover:bg-secondary transition text-white disabled:cursor-not-allowed disabled:opacity-40 ${fontDisplay.className}`}
         >
-          {saving ? 'Enregistrement...' : 'Enregistrer'}
+          {saving ? g('saving') : g('save')}
         </button>
         <Link
           href="/"
           passHref
           className={`mt-2 px-4 py-2 w-full  bg-black text-white text-center rounded-md border-2 border-border hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
         >
-          Annuler
-        </Link>
+          {g('cancel')}
+        </button>
       </div>
     </div>
   );

@@ -2,14 +2,18 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/db/prisma';
 import crypto from 'crypto';
 import { sendEmailVerification } from '@/lib/mailing/mailSender';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
 export async function POST(req: Request) {
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
   const { email } = await req.json();
-  if (!email) return NextResponse.json({ error: 'Email requis' }, { status: 400 });
+
+  if (!email) return NextResponse.json({ error: g('emailRequired') }, { status: 400 });
 
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user || user.username !== null) {
-    return NextResponse.json({ error: 'Aucun compte en attente pour cet email.' }, { status: 400 });
+    return NextResponse.json({ error: g('noPendingAccountForEmail') }, { status: 400 });
   }
 
   const lastToken = await prisma.emailVerificationToken.findFirst({
@@ -17,7 +21,7 @@ export async function POST(req: Request) {
     orderBy: { createdAt: 'desc' },
   });
   if (!lastToken) {
-    return NextResponse.json({ error: 'Aucun token existant à revalider.' }, { status: 400 });
+    return NextResponse.json({ error: g('noTokenToValidate') }, { status: 400 });
   }
 
   await prisma.emailVerificationToken.deleteMany({ where: { email } });
@@ -42,9 +46,9 @@ export async function POST(req: Request) {
     },
   });
 
-  sendEmailVerification(email, token).catch((err) => {
-    console.error('Erreur envoi email confirmation :', err);
+  sendEmailVerification(email, token, g).catch((err) => {
+    console.error('Error during email sending : ', err);
   });
 
-  return NextResponse.json({ message: 'Lien de confirmation renvoyé.' });
+  return NextResponse.json({ message: g('emailSent') });
 }

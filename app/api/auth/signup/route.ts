@@ -3,25 +3,25 @@ import prisma from '@/lib/db/prisma';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { sendEmailVerification } from '@/lib/mailing/mailSender';
+import { getLocaleFromRequest, getT } from '@/lib/i18n/apiTranslations';
 
 export async function POST(req: Request) {
   const { email, username, password } = await req.json();
+  const locale = getLocaleFromRequest(req);
+  const g = getT(locale, 'General');
 
   const errors: Record<string, string> = {};
-  if (!email) errors.email = 'Email requis';
-  if (!username) errors.username = "Nom d'utilisateur requis";
-  if (!password) errors.password = 'Mot de passe requis';
+  if (!email) errors.email = g('thisFieldIsRequired');
+  if (!username) errors.username = g('thisFieldIsRequired');
+  if (!password) errors.password = g('thisFieldIsRequired');
 
   if (Object.keys(errors).length > 0) {
-    return NextResponse.json(
-      { error: 'Champs requis manquants.', fields: errors },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: g('missingFields'), fields: errors }, { status: 400 });
   }
 
   const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser && existingUser.username !== null) {
-    errors.email = 'Email déjà utilisé.';
+    errors.email = g('alreadyUsed');
   }
 
   const usernameTaken = await prisma.user.findFirst({
@@ -39,14 +39,11 @@ export async function POST(req: Request) {
   });
 
   if (usernameTaken || pendingUsernameTaken) {
-    errors.username = 'Nom déjà utilisé.';
+    errors.username = g('alreadyUsed');
   }
 
   if (Object.keys(errors).length > 0) {
-    return NextResponse.json(
-      { error: 'Utilisateur déjà existant.', fields: errors },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: g('userAlreadyExists'), fields: errors }, { status: 400 });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -82,7 +79,7 @@ export async function POST(req: Request) {
     },
   });
 
-  sendEmailVerification(email, token).catch(console.error);
+  sendEmailVerification(email, token, g).catch(console.error);
 
-  return NextResponse.json({ message: 'Email de confirmation envoyé.' });
+  return NextResponse.json({ message: g('emailSent') });
 }

@@ -21,8 +21,10 @@ import {
   fontGameFilledOutline,
   fontGameOutlined,
 } from '@/lib/fonts';
+import { useTranslations } from 'next-intl';
 
 export default function Page() {
+  const g = useTranslations('General');
   return (
     <div className="justify-items-center gap-16 px-20 pb-20">
       <div className="flex flex-col gap-8 text-white">
@@ -38,7 +40,7 @@ export default function Page() {
               fontArcadeOutlined / fontArcade / fontArcadeFilledOutline
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontArcadeOutlined.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontArcade.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -57,7 +59,7 @@ export default function Page() {
               fontArcadeBlockOutlined / fontArcadeBlock / fontArcadeBlockFilledOutline
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontArcadeBlockOutlined.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontArcadeBlock.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -76,7 +78,7 @@ export default function Page() {
               fontDigitalOutlined / fontDigital / fontDigitalFilledOutline
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontDigitalOutlined.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontDigital.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -95,7 +97,7 @@ export default function Page() {
               fontDisplayOutlined / fontDisplay / fontDisplayFilledOutline
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontDisplayOutlined.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontDisplay.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -114,7 +116,7 @@ export default function Page() {
               fontGameOutlined / fontGame / fontGameFilledOutline
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontGameOutlined.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontGame.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -133,7 +135,7 @@ export default function Page() {
               fontGameCompact
             </div>
             <h1 className={`text-5xl drop-shadow-xl ${fontGameCompact.className}`}>
-              Bienvenue au Tournoi !
+              {g('welcomeToTheTournament')}
             </h1>
             <p className={`text-2xl text-justify ${fontGameCompact.className}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

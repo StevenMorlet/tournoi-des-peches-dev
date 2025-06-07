@@ -5,16 +5,18 @@ export function generateEmailHTML({
   text,
   buttonText,
   buttonUrl,
+  footerText,
 }: {
   title: string;
   text: string;
   buttonText: string;
   buttonUrl: string;
+  footerText: string;
 }) {
   return `
     <div style="background:#1a1a1a;color:#f0f0f0;padding:40px;font-family:sans-serif;max-width:600px;margin:auto;border-radius:12px;">
-      <div style="text-align:center;margin-bottom:30px;">
-        <img src="https://ton-domaine.com/logo.png" alt="Logo" style="width:80px;height:auto;" />
+      <div style="text-align:center;margin-bottom:20px;">
+        <img src="cid:logo" alt="Logo du tournoi" style="width:60px;height:auto;" />
       </div>
 
       <h1 style="font-size:24px;margin-bottom:20px;text-align:center;">${title}</h1>
@@ -28,7 +30,7 @@ export function generateEmailHTML({
       </div>
 
       <p style="font-size:12px;color:#888;margin-top:40px;text-align:center;">
-        Si vous n’avez pas fait cette demande, vous pouvez ignorer ce message.
+        ${footerText}
       </p>
     </div>
   `;
@@ -46,34 +48,53 @@ export async function sendMail(to: string, subject: string, html: string) {
 
   await transporter.sendMail({
     from: '"Tournoi" <no-reply@gmail.com>',
-    to: to,
-    subject: subject,
-    html: html,
+    to,
+    subject,
+    html,
+    attachments: [
+      {
+        filename: 'logo.png',
+        path: './public/assets/logos/VBlancCBlanc.png',
+        cid: 'logo',
+      },
+    ],
   });
 }
 
-export async function sendEmailVerification(email: string, token: string) {
+export async function sendEmailVerification(
+  email: string,
+  token: string,
+  g: (key: string) => string,
+) {
   const uRL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup/verify?token=${token}`;
 
   await sendMail(
     email,
-    'Confirmez votre adresse email',
+    g('emailConfirmationSubject'),
     generateEmailHTML({
-      title: 'Bienvenue au Tournoi !',
-      text: 'Pour valider votre adresse email, cliquez sur le bouton ci-dessous.',
-      buttonText: 'Confirmer mon email',
+      title: g('emailConfirmationTitle'),
+      text: g('emailConfirmationText'),
+      buttonText: g('emailConfirmationButtonText'),
       buttonUrl: uRL,
+      footerText: g('emailConfirmationFooter'),
     }),
   );
 }
 
-export async function sendPasswordResetEmail(email: string, link: string) {
-  const html = generateEmailHTML({
-    title: 'Réinitialisation du mot de passe',
-    text: 'Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe.',
-    buttonText: 'Réinitialiser mon mot de passe',
-    buttonUrl: link,
-  });
-
-  await sendMail(email, 'Réinitialisation de votre mot de passe', html);
+export async function sendPasswordResetEmail(
+  email: string,
+  link: string,
+  g: (key: string) => string,
+) {
+  await sendMail(
+    email,
+    g('emailReinitializationSubject'),
+    generateEmailHTML({
+      title: g('emailReinitializationTitle'),
+      text: g('emailReinitializationText'),
+      buttonText: g('emailReinitializationButtonText'),
+      buttonUrl: link,
+      footerText: g('emailReinitializationFooter'),
+    }),
+  );
 }

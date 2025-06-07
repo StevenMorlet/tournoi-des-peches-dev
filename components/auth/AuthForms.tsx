@@ -7,12 +7,15 @@ import LoginForm from '@/components/auth/LogInForm';
 import ForgotPasswordForm from '@/components/auth/ForgotPasswordForm';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function AuthForms() {
   const searchParams = useSearchParams();
   const initialForm = searchParams.get('form') as 'login' | 'signup' | 'forgot' | null;
   const { form, setForm } = useAuthForm();
   const router = useRouter();
+  const g = useTranslations('General');
+  const t = useTranslations('AuthForms');
 
   useEffect(() => {
     if (initialForm) setForm(initialForm);
@@ -26,7 +29,7 @@ export default function AuthForms() {
   }, [form, router, searchParams]);
 
   return (
-    <div className="w-full p-6 shadow-lg flex flex-col gap-6">
+    <div className="w-full max-w-xl p-6 shadow-lg flex flex-col gap-6">
       <div>
         {form === 'signup' && <SignupForm />}
         {form === 'login' && <LoginForm />}
@@ -40,7 +43,7 @@ export default function AuthForms() {
               onClick={() => setForm('forgot')}
               className={`text-primary hover:text-secondary ${fontDisplay.className}`}
             >
-              Mot de passe oublié ?
+              {g('forgottenPassword')} ?
             </button>
           </div>
         )}
@@ -51,7 +54,7 @@ export default function AuthForms() {
               onClick={() => setForm('login')}
               className={`text-primary hover:text-secondary ${fontDisplay.className}`}
             >
-              Retour à la connexion
+              {t('backToConnection')}
             </button>
           </div>
         )}
@@ -59,24 +62,24 @@ export default function AuthForms() {
         {form === 'login' ? (
           <div className={`flex w-2/3 justify-end ${fontDisplay.className}`}>
             <span className={`flex flex-row items-center justify-end`}>
-              Pas encore de compte ?{' '}
+              {t('noAccountYet')}{' '}
               <button
                 onClick={() => setForm('signup')}
                 className="text-primary hover:text-secondary cursor-pointer"
               >
-                S’inscrire
+                {g('toSignUp')}
               </button>
             </span>
           </div>
         ) : form === 'signup' ? (
           <div className={`flex w-full justify-end ${fontDisplay.className}`}>
             <span>
-              Déjà un compte ?{' '}
+              {t('alreadyHaveAnAccount')}{' '}
               <button
                 onClick={() => setForm('login')}
                 className="text-primary hover:text-secondary cursor-pointer"
               >
-                Se connecter
+                {g('toLogin')}
               </button>
             </span>
           </div>

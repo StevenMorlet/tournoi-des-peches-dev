@@ -5,6 +5,7 @@ import { UploadCloud } from 'lucide-react';
 import Image from 'next/image';
 import { fontGameCompact } from '@/lib/fonts';
 import { useNotify } from '@/contexts/NotificationContext';
+import { useTranslations } from 'next-intl';
 
 interface AvatarUploaderProps {
   avatarUrl?: string | null;
@@ -21,6 +22,8 @@ export default function AvatarUploader({
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const notify = useNotify();
+  const g = useTranslations('General');
+  const t = useTranslations('AvatarUploader');
 
   useEffect(() => {
     if (!file) setPreview(null);
@@ -31,13 +34,13 @@ export default function AvatarUploader({
 
     if (selected) {
       if (!selected.type.startsWith('image/')) {
-        notify('Seuls les fichiers image sont autorisés.', 'warning');
+        notify(t('onlyImageFiles'), 'warning');
         e.target.value = '';
         return;
       }
 
       if (selected.size > 2 * 1024 * 1024) {
-        notify('Image trop volumineuse (max 2 Mo).', 'warning');
+        notify(t('imageTooHeavy'), 'warning');
         e.target.value = '';
         return;
       }
@@ -78,7 +81,7 @@ export default function AvatarUploader({
         {preview ? (
           <Image
             src={preview}
-            alt="preview"
+            alt="Preview"
             className="w-full h-full object-cover rounded-full"
             width={144}
             height={144}
@@ -86,7 +89,7 @@ export default function AvatarUploader({
         ) : avatarUrl ? (
           <Image
             src={avatarUrl}
-            alt="avatar"
+            alt="Avatar"
             className="w-full h-full object-cover rounded-full"
             width={144}
             height={144}
@@ -95,9 +98,7 @@ export default function AvatarUploader({
           <div className="flex flex-col items-center justify-center text-white opacity-60">
             <UploadCloud className="w-6 h-6 mb-1" />
             <span className="text-xs text-center">
-              Importer
-              <br />
-              votre avatar
+              {g('import')} <br /> {t('yourAvatar')}
             </span>
           </div>
         )}
@@ -116,13 +117,13 @@ export default function AvatarUploader({
           className="text-sm px-4 py-1 rounded-lg bg-primary hover:bg-secondary text-white transition"
           disabled={uploading}
         >
-          {uploading ? 'Envoi...' : 'Envoyer'}
+          {uploading ? g('sending') : g('send')}
         </button>
       )}
 
       {avatarUrl && onReset && !file && (
         <button onClick={onReset} className="text-sm text-primary hover:text-secondary">
-          Supprimer l’image de profil
+          {g('reinitialize')} {t('yourAvatar')}
         </button>
       )}
     </div>

@@ -6,9 +6,11 @@ import VNoirCBlanc from '@/assets/logos/VNoirCBlanc.png';
 import { fontDisplay, fontDisplayOutlined } from '@/lib/fonts';
 import ProfileNavBar from '@/components/ui/ProfileNavBar';
 import { useSession } from '@/contexts/SessionContext';
+import { useTranslations } from 'next-intl';
 
 export default function Navbar() {
   const { user, isLoggedIn } = useSession();
+  const g = useTranslations('General');
 
   return (
     <div className="fixed top-0 w-full z-50 backdrop-blur-sm bg-black/40 rounded-md">
@@ -19,13 +21,13 @@ export default function Navbar() {
               <span
                 className={`self-center text-xl font-semibold whitespace-nowrap text-white ${fontDisplayOutlined.className}`}
               >
-                Le Tournoi
+                {g('theTournament')}
               </span>
             </Link>
             <Link href="/">
               <Image
                 src={VNoirCBlanc}
-                alt="Logo"
+                alt={g('tournamentLogo')}
                 quality={50}
                 width={24}
                 height={24}
@@ -38,22 +40,22 @@ export default function Navbar() {
             <ul className="flex flex-row justify-center gap-3 text-white">
               <li>
                 <Link href="/" className="block py-2 pr-4 pl-3 hover:text-primary transition">
-                  Accueil
+                  {g('home')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="block py-2 pr-4 pl-3 hover:text-primary transition">
-                  Solo
+                  {g('solo')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="block py-2 pr-4 pl-3 hover:text-primary transition">
-                  Multijoueur
+                  {g('multiplayer')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="block py-2 pr-4 pl-3 hover:text-primary transition">
-                  Statistiques
+                  {g('statistics')}
                 </Link>
               </li>
             </ul>
@@ -68,13 +70,13 @@ export default function Navbar() {
                   href="/auth?form=login"
                   className="text-white hover:text-primary font-medium rounded-lg text-sm px-4 py-2 transition-colors duration-200"
                 >
-                  Connexion
+                  {g('connection')}
                 </Link>
                 <Link
                   href="/auth?form=signup"
                   className="bg-primary hover:bg-ternary focus:ring-4 focus:ring-secondary text-white font-medium rounded-lg text-sm px-4 py-2 ml-2 transition-colors duration-200"
                 >
-                  Inscription
+                  {g('signup')}
                 </Link>
               </>
             )}

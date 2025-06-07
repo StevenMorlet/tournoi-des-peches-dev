@@ -3,15 +3,17 @@
 import { useNotify } from '@/contexts/NotificationContext';
 import { useSession } from '@/contexts/SessionContext';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function SessionDebug() {
   const { user, isLoggedIn, refresh, logout } = useSession();
   const notify = useNotify();
   const router = useRouter();
+  const t = useTranslations('Debug');
 
   const handleLogout = async () => {
     await logout();
-    notify('Déconnecté.', 'success');
+    notify(t('deconnected'), 'success');
     router.refresh();
   };
 
@@ -24,14 +26,14 @@ export default function SessionDebug() {
 
       if (!res.ok) {
         const text = await res.text();
-        notify(`Erreur ${res.status} : ${text}`, 'error');
+        notify(`${t('error')} ${res.status} : ${text}`, 'error');
         return;
       }
 
       const data = await res.json();
-      notify(`Comptes supprimés : ${data.deleted}`, 'success');
+      notify(`${t('removedAccounts')} : ${data.deleted}`, 'success');
     } catch (err) {
-      notify('Erreur lors de la requête.', 'error');
+      notify(t('requestError'), 'error');
       console.error(err);
     }
   };
@@ -66,25 +68,25 @@ export default function SessionDebug() {
           </button>
         )}
         <button
-          onClick={() => notify('Notification de test', 'info')}
+          onClick={() => notify(t('testNotification'), 'info')}
           className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
         >
           Alert [info]
         </button>
         <button
-          onClick={() => notify('Notification de test', 'success')}
+          onClick={() => notify(t('testNotification'), 'success')}
           className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
         >
           Alert [success]
         </button>
         <button
-          onClick={() => notify('Notification de test', 'error')}
+          onClick={() => notify(t('testNotification'), 'error')}
           className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
         >
           Alert [error]
         </button>
         <button
-          onClick={() => notify('Notification de test', 'warning')}
+          onClick={() => notify(t('testNotification'), 'warning')}
           className="bg-gray-600 px-3 py-1 rounded hover:bg-gray-700 transition cursor-pointer"
         >
           Alert [warning]

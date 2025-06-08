@@ -6,8 +6,7 @@ import { verifyJwtEdge } from '@/lib/auth/jwtEdge';
 const locales = routing.locales;
 const defaultLocale = routing.defaultLocale;
 
-const PUBLIC_ROUTES = ['/', '/auth', '/auth/login', '/auth/signup'];
-const KNOWN_ROUTES = [...PUBLIC_ROUTES, '/profile', '/game', '/stats'];
+const PROTECTED_ROUTES = ['/profile', '/game', '/stats'];
 
 export type SupportedLocale = (typeof locales)[number];
 
@@ -33,34 +32,24 @@ export async function middleware(req: NextRequest) {
 
     const newUrl = url.clone();
     newUrl.pathname = `/${locale}${pathname}`;
-
     const response = NextResponse.redirect(newUrl);
     response.cookies.set('NEXT_LOCALE', locale);
-
     return response;
   }
 
-  const intlResponse = await intlMiddleware(req);
-
   const pathnameWithoutLocale = `/${pathname.split('/').slice(2).join('/')}`;
-
-  const isPublic = PUBLIC_ROUTES.includes(pathnameWithoutLocale);
-  const isKnown = KNOWN_ROUTES.includes(pathnameWithoutLocale);
+  const isProtected = PROTECTED_ROUTES.includes(pathnameWithoutLocale);
 
   const token = req.cookies.get('session')?.value;
   const session = token ? await verifyJwtEdge(token) : null;
 
-  if (!session?.userId && !isKnown) {
-    return intlResponse;
-  }
-
-  if (!session?.userId && !isPublic) {
+  if (!session?.userId && isProtected) {
     const loginUrl = req.nextUrl.clone();
     loginUrl.pathname = `/${defaultLocale}/auth`;
     return NextResponse.redirect(loginUrl);
   }
 
-  return intlResponse;
+  return intlMiddleware(req);
 }
 
 export const config = {

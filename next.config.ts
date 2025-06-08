@@ -44,6 +44,12 @@ const nextConfig: NextConfig = {
         port: '9000',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'minio',
+        port: '9000',
+        pathname: '/**',
+      },
     ],
   },
 
@@ -142,8 +148,5 @@ const nextConfig: NextConfig = {
   //   },
 };
 
-const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
-export default withNextIntl({
-  ...nextConfig,
-  env: { JWT_SECRET: process.env.JWT_SECRET },
-});
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

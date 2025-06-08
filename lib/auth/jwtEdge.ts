@@ -8,6 +8,7 @@ export type JwtPayload = {
 };
 
 export async function verifyJwtEdge(token: string): Promise<JwtPayload | null> {
+  console.log('[JWT Edge] JWT_SECRET:', process.env.JWT_SECRET?.slice?.(0, 8));
   try {
     const { payload } = await jwtVerify<JwtPayload>(token, JWT_SECRET);
     return payload;

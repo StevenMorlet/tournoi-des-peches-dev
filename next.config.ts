@@ -148,5 +148,8 @@ const nextConfig: NextConfig = {
   //   },
 };
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+export default withNextIntl({
+  ...nextConfig,
+  env: { JWT_SECRET: process.env.JWT_SECRET },
+});

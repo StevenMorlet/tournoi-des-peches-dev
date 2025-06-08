@@ -1,5 +1,7 @@
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 
+console.log('[MinIO] Connecting to:', process.env.MINIO_ENDPOINT);
+
 export const s3Client = new S3Client({
   region: 'eu-west-3',
   endpoint: process.env.MINIO_ENDPOINT,
@@ -11,6 +13,8 @@ export const s3Client = new S3Client({
 });
 
 export async function putObject(key: string, body: Buffer, contentType: string) {
+  console.debug(`[MinIO] Uploading ${key} (${contentType})`);
+
   const command = new PutObjectCommand({
     Bucket: 'avatars',
     Key: key,
@@ -23,6 +27,8 @@ export async function putObject(key: string, body: Buffer, contentType: string) 
 }
 
 export async function deleteObject(key: string) {
+  console.debug(`[MinIO] Deleting ${key}`);
+
   const command = new DeleteObjectCommand({
     Bucket: 'avatars',
     Key: key,

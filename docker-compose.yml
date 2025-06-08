@@ -23,6 +23,7 @@ services:
       - /app/node_modules
     depends_on:
       - db
+      - minio
     environment:
       DATABASE_URL: postgresql://postgres:postgres@db:5432/tournoi
       MINIO_ENDPOINT: http://minio:9000

@@ -60,6 +60,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  console.log('[MIDDLEWARE]', { pathname, token, session });
+
   return intlResponse;
 }
 

@@ -6,12 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function SessionDebug() {
-  if (process.env.NODE_ENV === 'production') return null;
-
   const { user, isLoggedIn, refresh, logout } = useSession();
   const notify = useNotify();
   const router = useRouter();
   const t = useTranslations('Debug');
+
+  if (process.env.NODE_ENV === 'production') return null;
 
   const handleLogout = async () => {
     await logout();

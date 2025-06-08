@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import tournoilogo from '@/assets/logos/VNoirCBlanc.png';
+import tournoilogo from '@/public/assets/logos/VNoirCBlanc.png';
 import { useNotify } from '@/contexts/NotificationContext';
 import { useEffect, useState } from 'react';
 import { fontDisplayOutlined } from '@/lib/fonts';

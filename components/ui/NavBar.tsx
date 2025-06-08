@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import VNoirCBlanc from '@/assets/logos/VNoirCBlanc.png';
+import VNoirCBlanc from '@/public/assets/logos/VNoirCBlanc.png';
 import { fontDisplay, fontDisplayOutlined } from '@/lib/fonts';
 import ProfileNavBar from '@/components/ui/ProfileNavBar';
 import { useSession } from '@/contexts/SessionContext';

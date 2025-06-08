@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import VBlancCBlanc from '@/assets/logos/VBlancCBlanc.png';
-import VBlancCNoir from '@/assets/logos/VBlancCNoir.png';
-import VNoirCBlanc from '@/assets/logos/VNoirCBlanc.png';
-import VNoirCNoir from '@/assets/logos/VNoirCNoir.png';
+import VBlancCBlanc from '@/public/assets/logos/VBlancCBlanc.png';
+import VBlancCNoir from '@/public/assets/logos/VBlancCNoir.png';
+import VNoirCBlanc from '@/public/assets/logos/VNoirCBlanc.png';
+import VNoirCNoir from '@/public/assets/logos/VNoirCNoir.png';
 import {
   fontArcadeOutlined,
   fontArcadeBlock,

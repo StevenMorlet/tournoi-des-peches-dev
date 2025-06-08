@@ -1,0 +1,143 @@
+{
+  "General": {
+    "home": "Home",
+    "profile": "Profile",
+    "theTournament": "The Tournament",
+    "enterTheTournament": "Enter the Tournament!",
+    "welcomeToTheTournament": "Welcome to the Tournament!",
+
+    "solo": "Solo",
+    "multiplayer": "Multiplayer",
+    "soloMode": "Solo Mode",
+    "multiplayerMode": "Multiplayer Mode",
+    "statistics": "Statistics",
+    "tournamentLogo": "Tournament Logo",
+    "comingSoon": "coming soon",
+
+    "import": "Import",
+    "save": "Save",
+    "saving": "Saving...",
+    "validate": "Validate",
+    "cancel": "Cancel",
+    "reinitialize": "Reset",
+    "connection": "Login",
+    "disconnection": "Logout",
+    "signup": "Sign up",
+    "toSignUp": "Sign up",
+    "toLogin": "Login",
+    "unauthorized": "Unauthorized",
+
+    "connectionEstablished": "Connection established",
+    "disconnectionEstablished": "Logout successful",
+    "emailConfirmed": "Email address successfully confirmed!",
+
+    "email": "Email",
+    "emailSent": "Email sent",
+    "send": "Send",
+    "sending": "Sending...",
+    "sendIn": "Send in",
+    "sendEmail": "Send Email",
+
+    "username": "Username",
+    "password": "Password",
+
+    "oldPassword": "Old password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "changePassword": "Change password",
+    "deleteAccount": "Delete account",
+    "forgottenPassword": "Forgot password",
+    "invalidPassword": "Invalid password",
+    "passwordsDontMatch": "Passwords do not match",
+    "passwordUpdated": "Password updated",
+    "invalidPreviousPassword": "Invalid previous password",
+
+    "invalidCredentials": "Invalid Credentials",
+    "nonVerifiedAccount": "Account not verified",
+
+    "invalidLink": "Invalid or missing link",
+    "expiredLink": "Invalid or expired link",
+
+    "invalidEmail": "Invalid Email",
+    "emailConflict": "Email Conflict",
+    "usernameConflict": "Username Conflict",
+
+    "invalidFile": "Invalid File",
+    "uploadFailed": "Upload failed",
+
+    "anErrorOccurred": "An error occurred",
+    "passwordResetError": "Password Reset Error",
+    "deleteError": "Error during deletion",
+    "sendingError": "Error during sending",
+    "serverError": "Server Error",
+    "unknownError": "Unknown error",
+
+    "emailRequired": "Email Required",
+    "missingFields": "Required fields missing",
+    "thisFieldIsRequired": "This field is required",
+
+    "alreadyUsed": "Already used",
+    "userNotFound": "User not found",
+    "userAlreadyExists": "User already exists",
+    "noAccountCorrespondingToEmail": "No account corresponding to the email",
+    "noPendingAccountForEmail": "No pending account for Email",
+
+    "wait10sBeforeNewRequest": "Wait 10s before making a new request",
+    "invalidRequest": "Invalid Request",
+
+    "missingToken": "Missing Token",
+    "invalidToken": "Invalid Token",
+    "noTokenToValidate": "No Token to validate",
+
+    "emailConfirmationSubject": "Confirm your email address",
+    "emailConfirmationTitle": "Welcome to the Tournament!",
+    "emailConfirmationText": "To validate your email address, click the button below.",
+    "emailConfirmationButtonText": "Confirm my email",
+    "emailConfirmationFooter": "If you did not request this, you can safely ignore this message.",
+
+    "emailReinitializationSubject": "Password reset",
+    "emailReinitializationTitle": "Reset your password",
+    "emailReinitializationText": "Click the button below to set a new password.",
+    "emailReinitializationButtonText": "Reset my password",
+    "emailReinitializationFooter": "If you did not request this, you can safely ignore this message."
+  },
+  "LocaleLayoutPage": {
+    "githubProject": "GitHub Project"
+  },
+  "AuthPage": {
+    "userAlreadyExistsOrNotFound": "User already exists or not found"
+  },
+  "AuthForms": {
+    "backToConnection": "Back to login",
+    "noAccountYet": "No account yet?",
+    "alreadyHaveAnAccount": "Already have an account?"
+  },
+  "ProfilePage": {
+    "avatarReinitialized": "Avatar reset",
+    "avatarDeleteConfirmation": "Are you sure you want to delete your account?",
+    "accountDeleted": "Account deleted",
+    "avatarUpdated": "Avatar updated",
+    "profileUpdated": "Profile updated"
+  },
+  "ResetPassword": {
+    "enterAPassword": "Please enter a password",
+    "confirmThePassword": "Please confirm the password",
+    "passwordReinitialized": "Password reset. You can now log in",
+    "reinitializePassword": "Reset password"
+  },
+  "AvatarUploader": {
+    "onlyImageFiles": "Only image files are allowed",
+    "imageTooHeavy": "Image too large (max 2 MB)",
+    "yourAvatar": "Your avatar"
+  },
+  "NotFoundPage": {
+    "subtitle": "Well now, lost are we... sinner?"
+  },
+  "Debug": {
+    "deconnected": "Logged out",
+    "error": "Error",
+    "removedAccounts": "Accounts deleted",
+    "requestError": "Request error",
+    "testNotification": "Test notification"
+  }
+}

@@ -20,17 +20,17 @@
  * - Redirects and rewrites
  */
 
-const nextConfig = {
-  // React strict mode
+import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // Enable experimental features
   experimental: {
     serverActions: {}, // Server actions
     optimizeCss: true, // CSS Optimization
   },
 
-  // Configure image optimization
   images: {
     formats: [
       // https://nextjs.org/docs/app/api-reference/components/image#formats
@@ -38,20 +38,15 @@ const nextConfig = {
       'image/webp',
     ],
     remotePatterns: [
-      //TODO: Add remote patterns for external images
-      // https://nextjs.org/docs/app/api-reference/components/image#remotepatterns
       {
-        protocol: 'https',
-        hostname: '**',
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '9000',
+        pathname: '/**',
       },
-    ],
-    localPatterns: [
-      //TODO: Add local patterns for internal images
-      // https://nextjs.org/docs/app/api-reference/components/image#localpatterns
     ],
   },
 
-  // Configure headers for security
   headers: async () => {
     return [
       {
@@ -72,7 +67,7 @@ const nextConfig = {
                 ? [
                     "default-src 'self'",
                     "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'",
-                    "img-src 'self' https: data: blob:",
+                    "img-src 'self' https: data: blob: http://localhost:3000",
                     "connect-src 'self' ws: wss:",
                     "media-src 'self' blob:",
                     "frame-ancestors 'none'",
@@ -90,7 +85,6 @@ const nextConfig = {
                     "frame-ancestors 'none'",
                     "base-uri 'self'",
                     "form-action 'self'",
-                    "require-trusted-types-for 'script'",
                     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
                     "font-src 'self' https://fonts.gstatic.com",
                   ].join('; '),
@@ -108,17 +102,10 @@ const nextConfig = {
     ];
   },
 
-  // Configure compiler options
   compiler: {
-    // Remove console logs and warns in production
     removeConsole: process.env.NODE_ENV === 'production',
-    // Support styled components
     styledComponents: true,
   },
-
-  //TODO: i18n (internationalization) config
-  // For App Router, internationalization is handled through the app directory structure
-  // See: https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
   //TODO: Redirections
   // redirects: async () => {
@@ -155,4 +142,8 @@ const nextConfig = {
   //   },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+export default withNextIntl({
+  ...nextConfig,
+  env: { JWT_SECRET: process.env.JWT_SECRET },
+});

@@ -1,17 +1,4 @@
 services:
-  db:
-    image: postgres
-    container_name: tournoi
-    restart: unless-stopped
-    ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_DB: tournoi
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - db-data:/var/lib/postgresql/data
-
   web:
     build:
       context: .
@@ -23,12 +10,26 @@ services:
       - /app/node_modules
     depends_on:
       - db
+      - minio
+    env_file:
+      - .env
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/tournoi
-      MINIO_ENDPOINT: http://minio:9000
-      MINIO_ACCESS_KEY: admin
-      MINIO_SECRET_KEY: password
-      MINIO_PUBLIC_URL: http://localhost:9000/avatars
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/tournoi
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_PUBLIC_URL=http://minio:9000
+
+  db:
+    image: postgres:16
+    container_name: tournoi
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: tournoi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
   minio:
     image: minio/minio
@@ -58,6 +59,3 @@ services:
 volumes:
   db-data:
   minio-data:
-
-networks:
-  default:

@@ -49,6 +49,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  console.log('Middleware debug:', {
+    pathname,
+    pathnameWithoutLocale,
+    token: token?.slice(0, 10),
+    hasSession: !!session?.userId,
+  });
+
   return intlMiddleware(req);
 }
 

@@ -45,6 +45,7 @@ services:
     image: minio/mc
     depends_on:
       - minio
+    restart: on-failure
     entrypoint: >
       /bin/sh -c "
         sleep 5;

@@ -1,0 +1,36 @@
+name: CI - Build Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Build app
+        run: pnpm build
+        env:
+          NODE_ENV: production
+          DATABASE_URL: postgresql://user:pass@localhost:5432/db
+          JWT_SECRET: dummy

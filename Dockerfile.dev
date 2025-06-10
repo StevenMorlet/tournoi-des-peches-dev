@@ -13,9 +13,6 @@ COPY . .
 
 RUN npx prisma generate
 
-COPY entrypoint.sh /app/entrypoint.sh
-ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
-
 EXPOSE 3000
 
 CMD ["pnpm", "dev"]

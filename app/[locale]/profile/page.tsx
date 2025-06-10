@@ -47,7 +47,7 @@ export default function ProfilePage() {
   if (!user) return null;
 
   return (
-    <div className="flex flex-1 items-center justify-center text-white">
+    <div className="flex w-full items-center justify-center p-5">
       <div className="flex flex-col p-8 max-w-md w-full border-4 border-white/20 rounded-xl bg-white/5 shadow-xl gap-6">
         <h1 className={`text-3xl ${fontDisplayOutlined.className}`}>{g('profile')}</h1>
 

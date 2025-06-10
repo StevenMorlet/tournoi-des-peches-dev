@@ -8,12 +8,14 @@ export default function HomePage() {
   const g = useTranslations('General');
 
   return (
-    <div className="flex-1 flex flex-col gap-20 p-10 justify-center items-center w-full text-white text-center sm:text-left">
-      <h1 className={`text-5xl sm:text-7xl drop-shadow-xl ${fontDisplayOutlined.className}`}>
+    <div className="flex flex-col w-full justify-center p-8 gap-8">
+      <h1
+        className={`text-center text-3xl sm:text-5xl md:text-7xl drop-shadow-xl ${fontDisplayOutlined.className}`}
+      >
         {g('enterTheTournament')}
       </h1>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-20">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-20 px-4">
         <button
           className={`flex flex-col items-center px-8 py-6 text-lg sm:text-xl rounded-2xl border-4 border-primary bg-black/70 hover:bg-ternary transition-all shadow-lg uppercase tracking-wide w-60 sm:w-72 ${fontDisplay.className}`}
         >

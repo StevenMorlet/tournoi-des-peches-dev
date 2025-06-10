@@ -13,17 +13,17 @@ export default function Navbar() {
   const g = useTranslations('General');
 
   return (
-    <div className="fixed top-0 w-full z-50 backdrop-blur-sm bg-black/40 rounded-md">
-      <nav className={`px-4 lg:px-6 py-2.5 ${fontDisplay.className}`}>
+    <div className="fixed top-0 w-full z-50 backdrop-blur-sm bg-black/40">
+      <nav className={`px-6 sm:px-8 py-2.5 ${fontDisplay.className}`}>
         <div className="flex flex-row justify-between items-center">
-          <div className={`flex flex-row items-center justify-items-start gap-3 w-1/4`}>
-            <Link href="/">
-              <span
-                className={`self-center text-xl font-semibold whitespace-nowrap text-white ${fontDisplayOutlined.className}`}
-              >
-                {g('theTournament')}
-              </span>
-            </Link>
+          <div className={`flex flex-row items-center justify-items-start gap-3`}>
+            <div
+              className={`hidden sm:flex self-center text-xl font-semibold ${fontDisplayOutlined.className}`}
+            >
+              <Link href="/">
+                <span>{g('theTournament')}</span>
+              </Link>
+            </div>
             <Link href="/">
               <Image
                 src={VNoirCBlanc}
@@ -36,7 +36,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="justify-center items-center w-2/4">
+          <div className="hidden lg:flex justify-center items-center">
             <ul className="flex flex-row justify-center gap-3 text-white">
               <li>
                 <Link href="/" className="block py-2 pr-4 pl-3 hover:text-primary transition">
@@ -61,7 +61,7 @@ export default function Navbar() {
             </ul>
           </div>
 
-          <div className="flex items-center justify-end w-1/4">
+          <div className="flex items-center justify-end">
             {isLoggedIn && user ? (
               <ProfileNavBar username={user.username} email={user.email} />
             ) : (

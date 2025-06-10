@@ -7,12 +7,10 @@ import { SessionProvider } from '@/contexts/SessionContext';
 
 export default function AppProviders({ children }: { children: ReactNode }) {
   return (
-    <div className={`min-h-screen`}>
-      <SessionProvider>
-        <NotificationProvider>
-          <AuthFormProvider>{children}</AuthFormProvider>
-        </NotificationProvider>
-      </SessionProvider>
-    </div>
+    <SessionProvider>
+      <NotificationProvider>
+        <AuthFormProvider>{children}</AuthFormProvider>
+      </NotificationProvider>
+    </SessionProvider>
   );
 }

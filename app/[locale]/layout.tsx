@@ -26,25 +26,23 @@ export default async function LocaleLayout({
   if (!messages) notFound();
 
   return (
-    <html lang={locale}>
-      <body className="min-h-screen flex flex-col bg-black text-white">
+    <html lang={locale} className={'min-h-screen min-w-screen'}>
+      <body className="min-h-screen min-w-full text-white">
         <link rel="icon" href="/favicon.ico" />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="fixed inset-0 -z-10 bg-[url('/assets/backgrounds/background.png')] bg-cover bg-center bg-fixed" />
-          <div className="fixed inset-0 bg-black/15 -z-10" />
+          <div className="fixed inset-0 -z-10 bg-[url('/assets/backgrounds/background.png')]" />
+          <div className="fixed inset-0 -z-10 bg-black/15" />
           <AppProviders>
-            <div className="min-h-screen flex flex-col">
-              <header className="flex flex-row justify-between items-center">
+            <div className={'min-h-screen flex flex-col'}>
+              <header className="min-h-16 flex">
                 <Navbar />
               </header>
-              <main className="flex flex-1 pt-16 px-4">
+              <main className="flex grow">
                 <SessionDebug />
                 {children}
               </main>
-              <footer
-                className={`w-full backdrop-blur-sm bg-black/5 text-sm opacity-50 ${fontGame.className}`}
-              >
-                <div className="flex flex-row justify-center gap-6 p-6">
+              <footer className={`backdrop-blur-sm bg-black/5 opacity-50 ${fontGame.className}`}>
+                <div className="flex flex-row justify-center text-sm p-6">
                   <a
                     className="hover:text-neutral-600"
                     href="https://github.com/StevenMorlet/tournoi-des-peches-dev"

@@ -10,12 +10,12 @@ export default function NotFoundCatchAll() {
 
   return (
     <div
-      className={`flex-1 flex flex-col p-10 justify-center items-center w-full text-white text-center sm:text-left animate-fade-in ${fontDisplayOutlined.className}`}
+      className={`flex flex-col p-14 w-full justify-center items-center text-center animate-fade-in ${fontDisplayOutlined.className}`}
     >
-      <h1 className="text-7xl text-red-600 mb-4 glitch" data-text="404">
+      <h1 className="text-red-600 glitch" data-text="404">
         404
       </h1>
-      <p className="text-3xl mb-6">{t('subtitle')}</p>
+      <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8">{t('subtitle')}</p>
       <Link
         href="/"
         className={`px-6 py-2 border border-red-500 rounded hover:bg-red-600 hover:text-white transition ${fontDisplay.className}`}

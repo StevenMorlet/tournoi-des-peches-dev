@@ -76,8 +76,28 @@ export default function ProfileNavBar({ username, email }: ProfileNavBarProps) {
           </div>
           <ul className="py-1">
             <li>
+              <Link href="/" className="block px-4 py-2 hover:bg-neutral-700 transition">
+                {g('home')}
+              </Link>
+            </li>
+            <li>
               <Link href="/profile" className="block px-4 py-2 hover:bg-neutral-700 transition">
                 {g('profile')}
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="block px-4 py-2 hover:bg-neutral-700 transition">
+                {g('solo')}
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="block px-4 py-2 hover:bg-neutral-700 transition">
+                {g('multiplayer')}
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="block px-4 py-2 hover:bg-neutral-700 transition">
+                {g('statistics')}
               </Link>
             </li>
             <li>

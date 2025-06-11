@@ -37,7 +37,7 @@ export default async function LocaleLayout({
               <header className="min-h-16 flex">
                 <Navbar />
               </header>
-              <main className="flex grow">
+              <main className="flex grow justify-center items-center">
                 <SessionDebug />
                 {children}
               </main>

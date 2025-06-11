@@ -47,8 +47,8 @@ export default function ResetPasswordForm({ token }: { token: string }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-lg">
-      <h1 className={`text-xl text-white ${fontDisplay.className}`}>{t('reinitializePassword')}</h1>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-xl px-10">
+      <h1 className={`text-xl ${fontDisplay.className}`}>{t('reinitializePassword')}</h1>
 
       <div>
         <Input

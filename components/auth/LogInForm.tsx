@@ -73,10 +73,10 @@ export default function LoginForm() {
         )}
       </div>
 
-      <div className={`flex flex-row justify-between`}>
+      <div className={`flex flex-row justify-between gap-6 text-center ${fontDisplay.className}`}>
         <button
           type="submit"
-          className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
+          className={`bg-black px-4 py-2 w-full rounded-md border-2 border-gray-300 hover:bg-ternary cursor-pointer`}
         >
           {g('toLogin')}
         </button>
@@ -84,7 +84,7 @@ export default function LoginForm() {
         <Link
           href="/"
           passHref
-          className={`bg-black text-white px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
+          className={`bg-black px-4 py-2 w-fit rounded-md border-2 border-gray-300 hover:bg-ternary cursor-pointer`}
         >
           {g('cancel')}
         </Link>

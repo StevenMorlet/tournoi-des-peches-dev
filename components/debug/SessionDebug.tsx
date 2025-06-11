@@ -41,7 +41,7 @@ export default function SessionDebug() {
   };
 
   return (
-    <div className="mt-40 fixed w-fit h-fit backdrop-blur-sm shadow-md px-4 py-2 text-sm text-white bg-black/40 rounded-md top-0 z-50 ">
+    <div className="fixed mt-40 w-fit h-fit backdrop-blur-sm shadow-md px-4 py-2 text-sm text-white bg-black/40 rounded-md left-5 top-24 z-50 ">
       <div className={`font-bold ${isLoggedIn ? 'text-green-400' : 'text-red-400'}`}>
         {isLoggedIn ? 'Connected' : 'Disconnected'}
       </div>

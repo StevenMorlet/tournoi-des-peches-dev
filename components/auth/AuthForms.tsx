@@ -29,19 +29,21 @@ export default function AuthForms() {
   }, [form, router, searchParams]);
 
   return (
-    <div className="w-full max-w-xl p-6 shadow-lg flex flex-col gap-6">
+    <div className="flex flex-col w-full gap-6 shadow-lg">
       <div>
         {form === 'signup' && <SignupForm />}
         {form === 'login' && <LoginForm />}
         {form === 'forgot' && <ForgotPasswordForm />}
       </div>
 
-      <div className="flex w-full text-sm mt-2">
+      <div
+        className={`flex flex-row w-full text-sm gap-4 justify-between ${fontDisplay.className}`}
+      >
         {form === 'login' && (
-          <div className={`flex w-1/2 items-center justify-start`}>
+          <div className={`text-left`}>
             <button
               onClick={() => setForm('forgot')}
-              className={`text-primary hover:text-secondary ${fontDisplay.className}`}
+              className={`text-primary hover:text-secondary cursor-pointer`}
             >
               {g('forgottenPassword')} ?
             </button>
@@ -49,10 +51,10 @@ export default function AuthForms() {
         )}
 
         {form === 'forgot' && (
-          <div className={`flex w-full items-center justify-end`}>
+          <div className={``}>
             <button
               onClick={() => setForm('login')}
-              className={`text-primary hover:text-secondary ${fontDisplay.className}`}
+              className={`text-primary hover:text-secondary cursor-pointer`}
             >
               {t('backToConnection')}
             </button>
@@ -60,28 +62,24 @@ export default function AuthForms() {
         )}
 
         {form === 'login' ? (
-          <div className={`flex w-2/3 justify-end ${fontDisplay.className}`}>
-            <span className={`flex flex-row items-center justify-end`}>
-              {t('noAccountYet')}{' '}
-              <button
-                onClick={() => setForm('signup')}
-                className="text-primary hover:text-secondary cursor-pointer"
-              >
-                {g('toSignUp')}
-              </button>
-            </span>
+          <div className={`text-right`}>
+            {t('noAccountYet')}{' '}
+            <button
+              onClick={() => setForm('signup')}
+              className="text-primary hover:text-secondary cursor-pointer"
+            >
+              {g('toSignUp')}
+            </button>
           </div>
         ) : form === 'signup' ? (
-          <div className={`flex w-full justify-end ${fontDisplay.className}`}>
-            <span>
-              {t('alreadyHaveAnAccount')}{' '}
-              <button
-                onClick={() => setForm('login')}
-                className="text-primary hover:text-secondary cursor-pointer"
-              >
-                {g('toLogin')}
-              </button>
-            </span>
+          <div className={`flex flex-row w-full justify-end gap-2`}>
+            {t('alreadyHaveAnAccount')}{' '}
+            <button
+              onClick={() => setForm('login')}
+              className="text-primary hover:text-secondary cursor-pointer"
+            >
+              {g('toLogin')}
+            </button>
           </div>
         ) : null}
       </div>

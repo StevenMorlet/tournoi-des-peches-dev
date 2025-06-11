@@ -127,11 +127,11 @@ export default function SignUpForm() {
         )}
       </div>
 
-      <div className={`flex flex-row justify-between`}>
+      <div className={`flex flex-row justify-between gap-6 text-center ${fontDisplay.className}`}>
         {(confirmationSent && (
           <button
             type="submit"
-            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 ${fontDisplay.className} opacity-50 cursor-not-allowed`}
+            className={`bg-black px-4 py-2 w-full rounded-md border-2 border-gray-300 hover:bg-ternary opacity-50 cursor-not-allowed`}
             disabled
           >
             {g('toSignUp')}
@@ -139,7 +139,7 @@ export default function SignUpForm() {
         )) || (
           <button
             type="submit"
-            className={`bg-black text-white px-4 py-2 w-3/4 rounded-md border-2 border-gray-300 hover:bg-ternary ${fontDisplay.className} cursor-pointer`}
+            className={`bg-black px-4 py-2 w-full rounded-md border-2 border-gray-300 hover:bg-ternary cursor-pointer`}
           >
             {g('toSignUp')}
           </button>

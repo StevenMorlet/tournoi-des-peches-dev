@@ -50,24 +50,24 @@ export default function AuthPage() {
   }, [searchParams, notify, isClient, router, t, g]);
 
   return (
-    <div className="flex flex-1 flex-col justify-center items-center">
-      <div className="flex flex-1 flex-col justify-center items-center text-white">
-        <h1 className={`text-6xl mb-8 drop-shadow-xl ${fontDisplayOutlined.className}`}>
-          {g('welcomeToTheTournament')}
-        </h1>
+    <div className="flex flex-col justify-center items-center gap-4 px-10 sm:gap-6 md:gap-8 lg:gap-10">
+      <h1
+        className={`text-3xl sm:text-4xl md:text-5xl text-center drop-shadow-xl ${fontDisplayOutlined.className}`}
+      >
+        {g('welcomeToTheTournament')}
+      </h1>
 
-        <div className={`flex w-full max-w-[850px] items-center`}>
-          <div className="flex w-1/3 justify-center">
-            <Image
-              alt={g('tournamentLogo')}
-              src={tournoilogo}
-              quality={100}
-              className="w-full h-auto max-w-[180px]"
-            />
-          </div>
-          <div className={`flex w-2/3 justify-center`}>
-            <AuthForms />
-          </div>
+      <div className={`flex justify-center items-center gap-20 w-full`}>
+        <div className="hidden lg:flex px-6">
+          <Image
+            alt={g('tournamentLogo')}
+            src={tournoilogo}
+            quality={100}
+            className="w-full h-auto max-w-[180px]"
+          />
+        </div>
+        <div className={`flex justify-center items-center w-full max-w-md lg:max-w-lg px-6`}>
+          <AuthForms />
         </div>
       </div>
     </div>

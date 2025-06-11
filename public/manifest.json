@@ -1,0 +1,25 @@
+{
+  "name": "Le Tournoi des Péchés",
+  "short_name": "Tournoi",
+  "description": "Jeu multijoueur dark/fantasy basé sur le Yam's dans le thème des péchés capitaux.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#000000",
+  "theme_color": "#8B0000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

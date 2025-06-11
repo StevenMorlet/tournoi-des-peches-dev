@@ -8,9 +8,48 @@ import SessionDebug from '@/components/debug/SessionDebug';
 import { fontGame } from '@/lib/fonts';
 import type { ReactNode } from 'react';
 import { getMessages } from '@/lib/i18n/messages';
+import { createTranslator } from 'next-intl';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await getMessages(locale);
+
+  const t = createTranslator({ locale: locale, messages });
+
+  const siteTitle = t('Metadata.siteTitle');
+  const siteDesc = t('Metadata.siteDescription');
+
+  return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
+    title: {
+      default: siteTitle,
+      template: `%s | ${siteTitle}`,
+    },
+    description: siteDesc,
+    openGraph: {
+      title: siteTitle,
+      description: siteDesc,
+      type: 'website',
+      url: process.env.NEXT_PUBLIC_BASE_URL,
+      siteName: siteTitle,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/logos/VBlancCNoir.png`,
+          width: 512,
+          height: 512,
+          alt: 'Logo The Tournament',
+        },
+      ],
+    },
+  };
 }
 
 export default async function LocaleLayout({

@@ -1,8 +1,23 @@
-'use client';
-
 import Link from 'next/link';
 import { fontDisplay, fontDisplayOutlined } from '@/lib/fonts';
 import { useTranslations } from 'next-intl';
+import { getMessages } from '@/lib/i18n/messages';
+import { createTranslator } from 'next-intl';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale: locale, messages });
+
+  return {
+    title: t('Metadata.notFoundTitle'),
+    description: t('Metadata.notFoundDescription'),
+  };
+}
 
 export default function NotFoundCatchAll() {
   const t = useTranslations('NotFoundPage');

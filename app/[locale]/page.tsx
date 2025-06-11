@@ -1,8 +1,22 @@
-'use client';
-
 import { fontDisplay, fontDisplayOutlined, fontGameCompact } from '@/lib/fonts';
 import { User, Users } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { createTranslator, useTranslations } from 'next-intl';
+import { getMessages } from '@/lib/i18n/messages';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale: locale, messages });
+
+  return {
+    title: t('Metadata.homeTitle'),
+    description: t('Metadata.homeDescription'),
+  };
+}
 
 export default function HomePage() {
   const g = useTranslations('General');

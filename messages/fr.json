@@ -139,5 +139,21 @@
     "removedAccounts": "Comptes supprimés",
     "requestError": "Erreur lors de la requête",
     "testNotification": "Notification de test"
+  },
+  "Metadata": {
+    "siteTitle": "Le Tournoi des Péchés",
+    "siteDescription": "Jeu multijoueur dark/fantasy basé sur les péchés capitaux.",
+    "homeTitle": "Accueil",
+    "homeDescription": "Rejoignez le tournoi et affrontez d'autres joueurs dans un univers sombre et stratégique.",
+    "profileTitle": "Profil joueur",
+    "profileDescription": "Modifiez votre pseudo, mot de passe et avatar.",
+    "authTitle": "Authentification",
+    "authDescription": "Authentifiez-vous pour rejoindre le Tournoi.",
+    "resetPasswordTitle": "Réinitialisation de mot de passe",
+    "resetPasswordDescription": "Choisissez un nouveau mot de passe pour accéder à votre compte.",
+    "assetsTitle": "Assets",
+    "assetsDescription": "Prévisualisez les différents éléments visuels disponibles.",
+    "notFoundTitle": "Page introuvable",
+    "notFoundDescription": "La page que vous recherchez n'existe pas ou a été déplacée."
   }
 }

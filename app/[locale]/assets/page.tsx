@@ -22,6 +22,23 @@ import {
   fontGameOutlined,
 } from '@/lib/fonts';
 import { useTranslations } from 'next-intl';
+import { getMessages } from '@/lib/i18n/messages';
+import { createTranslator } from 'next-intl';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale: locale, messages });
+
+  return {
+    title: t('Metadata.assetsTitle'),
+    description: t('Metadata.assetsDescription'),
+  };
+}
 
 export default function Page() {
   const g = useTranslations('General');

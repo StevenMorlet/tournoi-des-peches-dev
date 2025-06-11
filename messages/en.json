@@ -139,5 +139,21 @@
     "removedAccounts": "Accounts deleted",
     "requestError": "Request error",
     "testNotification": "Test notification"
+  },
+  "Metadata": {
+    "siteTitle": "The Tournament of Sins",
+    "siteDescription": "Multiplayer dark/fantasy game based on the seven deadly sins.",
+    "homeTitle": "Home",
+    "homeDescription": "Join the tournament and compete in a dark and strategic universe.",
+    "profileTitle": "Player Profile",
+    "profileDescription": "Update your username, password, and avatar.",
+    "authTitle": "Authentication",
+    "authDescription": "Authenticate to join the tournament.",
+    "resetPasswordTitle": "Reset Password",
+    "resetPasswordDescription": "Choose a new password to access your account.",
+    "assetsTitle": "Assets",
+    "assetsDescription": "Preview available visual elements.",
+    "notFoundTitle": "Page Not Found",
+    "notFoundDescription": "The page you are looking for does not exist or has been moved."
   }
 }

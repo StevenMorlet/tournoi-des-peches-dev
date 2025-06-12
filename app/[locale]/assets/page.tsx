@@ -24,6 +24,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { getMessages } from '@/lib/i18n/messages';
 import { createTranslator } from 'next-intl';
+import type { Metadata } from 'next';
 
 export async function generateMetadata({
   params,

@@ -2,6 +2,7 @@ import { fontDisplay, fontDisplayOutlined, fontGameCompact } from '@/lib/fonts';
 import { User, Users } from 'lucide-react';
 import { createTranslator, useTranslations } from 'next-intl';
 import { getMessages } from '@/lib/i18n/messages';
+import type { Metadata } from 'next';
 
 export async function generateMetadata({
   params,

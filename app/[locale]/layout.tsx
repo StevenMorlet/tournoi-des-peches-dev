@@ -9,6 +9,7 @@ import { fontGame } from '@/lib/fonts';
 import type { ReactNode } from 'react';
 import { getMessages } from '@/lib/i18n/messages';
 import { createTranslator } from 'next-intl';
+import type { Metadata } from 'next';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
